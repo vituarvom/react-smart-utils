@@ -53,8 +53,21 @@ yarn install
 ```
 
 
-Make sure everything is working by running the tests:
 
-```bash 
-yarn test
+## Code Style Guidelines
+
+To maintain code consistency across the project, we follow the following guidelines:
+
+- *Use TypeScript*: Type annotations are required for functions, interfaces, and components.
+
+- *Prettier*: We use [Prettier](https://prettier.io/) for formatting the code. Please run Prettier before committing changes:
+  
+```bash
+ yarn run format
+```
+
+Testing: Ensure your code is covered by tests. We use Jest for unit tests. Run tests with:
+
+```bash
+yarn run test
 ```
