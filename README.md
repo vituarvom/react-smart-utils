@@ -26,5 +26,5 @@ npm install react-utils
   or 
  
 ```bash
-yarn add react-utils-library
+yarn add react-utils 
 ```
