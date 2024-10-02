@@ -53,6 +53,16 @@ yarn install
 ```
 
 
+## Features
+
+The React Utils Library includes essential features to enhance your React applications:
+
+- *Custom Hooks*: Easily create and manage reusable custom hooks tailored to your application needs.
+
+- *Documentation*: Comprehensive documentation is provided to guide developers in understanding and utilizing the library effectively.
+
+
+
 
 ## Code Style Guidelines
 
@@ -71,3 +81,4 @@ Testing: Ensure your code is covered by tests. We use Jest for unit tests. Run t
 ```bash
 yarn run test
 ```
+
