@@ -8,10 +8,10 @@
  * isNaN(NaN);    // true
  * isNaN(123);    // false
  */
-function isNaN(value: any): boolean {
+function isNotANumber(value: any): boolean {
     // Use Number.isNaN to ensure the check only returns true for the actual NaN value.
     return Number.isNaN(value);
   }
   
-  export default isNaN;
+  export default isNotANumber;
   
