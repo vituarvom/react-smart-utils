@@ -11,13 +11,3 @@ function hasKey(obj, key){
      return Object.prototype.hasOwnProperty.call(obj, key);
      
      }
-
-     try {
-        console.log(hasKey({ a: 1, b: 2 }, 'a'));  // true
-        console.log(hasKey({ a: 1, b: 2 }, 'c'));  // false
-        console.log(hasKey(null, 'a'));              // Throws error
-        console.log(hasKey({ a: 1 }, ''));           // Throws error
-        console.log(hasKey({ a: 1 }, 123));          // Throws error
-    } catch (error) {
-        console.error(`Error: ${error.message}`);
-    }
