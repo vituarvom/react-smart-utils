@@ -7,12 +7,9 @@
  * @returns A promise that resolves after the specified delay.
  */
 export const sleep = (ms: number): Promise<void> => {
+    if (typeof ms !== 'number' || isNaN(ms) || ms < 0) {
+        throw new Error("Invalid input: ms should be a non-negative number.");
+    }
+
     return new Promise(resolve => setTimeout(resolve, ms));
 };
-
-// Example usage:
-async function example() {
-    console.log("Pausing for 1 second...");
-    await sleep(1000); // Pauses for 1 second
-    console.log("Resumed after 1 second.");
-}
