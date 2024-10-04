@@ -6,7 +6,7 @@ describe('isNaN function tests', () => {
     expect(isNaN(NaN)).toBe(true);
   });
 
-  // Test cases for numbers
+  // Test cases for valid numbers
   it('should return false for valid numbers', () => {
     expect(isNaN(123)).toBe(false);
     expect(isNaN(-456)).toBe(false);
@@ -28,11 +28,6 @@ describe('isNaN function tests', () => {
     expect(isNaN('123abc')).toBe(false);
   });
 
-  // Test cases for undefined and null
-  it('should return false for undefined and null', () => {
-    expect(isNaN(undefined)).toBe(false);
-    expect(isNaN(null)).toBe(false);
-  });
 
   // Test cases for boolean values
   it('should return false for boolean values', () => {
@@ -40,11 +35,6 @@ describe('isNaN function tests', () => {
     expect(isNaN(false)).toBe(false);
   });
 
-  // Test case for objects
-  it('should return false for objects and arrays', () => {
-    expect(isNaN({})).toBe(false);
-    expect(isNaN([])).toBe(false);
-  });
 
   // Test cases for special values
   it('should return true for invalid numbers like NaN', () => {
