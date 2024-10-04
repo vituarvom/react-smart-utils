@@ -5,6 +5,7 @@
  *
  * @param ms - The number of milliseconds to sleep.
  * @returns A promise that resolves after the specified delay.
+ * @throws Error if the input is not a valid positive number.
  */
 export const sleep = (ms: number): Promise<void> => {
     if (typeof ms !== 'number' || isNaN(ms) || ms < 0) {
