@@ -1,19 +1,23 @@
 {
-  "name": "react-hooks-utils",
-  "version": "1.0.0",
+  "name": "react-smart-utils",
+  "version": "0.0.1",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "repository": "https://github.com/bharat-dussa/react-hooks-utils.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vituarvom/react-smart-utils"
+  },
   "author": "bharatdussa <bharatdussa@gmail.com>",
   "license": "MIT",
   "keywords": [
     "react",
     "react hooks",
-    "react-hooks-utils",
+    "react utils",
+    "react-smart-utils",
     "utils",
     "hooks",
     "react-hooks"
