@@ -52,3 +52,13 @@ npm install react-smart-utils
 ```bash
 yarn add react-smart-utils
 ```
+---
+
+## Features
+
+- **Custom Hooks**: Reusable React hooks to solve common use cases.
+- **Utility Functions**: Handy utilities to simplify everyday coding tasks.
+- **TypeScript Support**: Fully typed with TypeScript for a smooth developer experience.
+- **Tree-shakable**: Only include what you need, minimizing bundle size.
+
+---
