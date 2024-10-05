@@ -27,13 +27,10 @@ A comprehensive set of utility functions and components designed to streamline d
 
 ## Table of Contents
 
-- [Installation](#installation)
-- [Features](#features)
-- [Usage](#usage)
-- [Documentation](#documentation)
-- [Contributing](#contributing)
-- [Roadmap](#roadmap)
-- [License](#license)
+- [React Smart Utils Library](#react-smart-utils-library)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Features](#features)
 
 ---
 
@@ -50,3 +47,13 @@ npm install react-smart-utils
 ```bash
 yarn add react-smart-utils
 ```
+---
+
+## Features
+
+- **Custom Hooks**: Reusable React hooks to solve common use cases.
+- **Utility Functions**: Handy utilities to simplify everyday coding tasks.
+- **TypeScript Support**: Fully typed with TypeScript for a smooth developer experience.
+- **Tree-shakable**: Only include what you need, minimizing bundle size.
+
+---
