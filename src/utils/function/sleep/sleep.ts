@@ -8,7 +8,7 @@
  * @throws Error if the input is not a valid positive number.
  */
 export const sleep = (ms: number): Promise<void> => {
-    if (typeof ms !== 'number' || isNaN(ms) || ms < 0) {
+    if (typeof ms !== 'number' || Number.isNaN(ms) || ms < 0) {
         throw new Error("Invalid input: ms should be a non-negative number.");
     }
 
