@@ -27,13 +27,15 @@ A comprehensive set of utility functions and components designed to streamline d
 
 ## Table of Contents
 
-- [Installation](#installation)
-- [Features](#features)
-- [Usage](#usage)
-- [Documentation](#documentation)
-- [Contributing](#contributing)
-- [Roadmap](#roadmap)
-- [License](#license)
+[Installation](#installation)
+[Features](#features)
+[Usage](#usage)
+[Example Hooks](#example-hooks)
+[Available Hooks](#available-hooks)
+[Contributing](#contributing)
+[Code Style Guidelines](#code-style-guidelines)
+[Roadmap](#roadmap)
+[License](#license)
 
 ---
 
