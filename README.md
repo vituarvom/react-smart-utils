@@ -3,10 +3,10 @@
 
 
   <p align="center">
-   <img src="https://github.com/user-attachments/assets/d7bdda65-f20b-4cb1-9cb0-da13df366c95" alt="Logo" width="150" height="150" style="border-radius: 50%;" />
+   <img src="https://github.com/user-attachments/assets/a8fdf92f-87b2-4d54-a25a-1213817b602e" alt="Logo" width="150" height="150" style="border-radius: 50%;" />
   </p>
-
-  ---
+  
+--- 
 
 
 ![npm](https://img.shields.io/npm/v/react-smart-utils) 
