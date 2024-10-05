@@ -42,10 +42,10 @@ A comprehensive set of utility functions and components designed to streamline d
 To install the React Utils library, use npm or yarn:
 
 ```bash
-npm install react-utils
+npm install react-smart-utils
 ```
   or 
  
 ```bash
-yarn add react-utils 
+yarn add react-smart-utils
 ```
