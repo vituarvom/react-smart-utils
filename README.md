@@ -1,10 +1,23 @@
 
 
+
+
   <p align="center">
    <img src="https://github.com/user-attachments/assets/d7bdda65-f20b-4cb1-9cb0-da13df366c95" alt="Logo" width="150" height="150" style="border-radius: 50%;" />
   </p>
 
   ---
+
+
+![npm](https://img.shields.io/npm/v/react-smart-utils) 
+[![Discord](https://img.shields.io/discord/123456789012345678)](https://discord.gg/DTJV27BYwA)
+
+Discord: https://discord.gg/DTJV27BYwA
+
+
+
+
+
 
 # React Utils Library
 
