@@ -3,7 +3,7 @@
 
 
   <p align="center">
-   <img src="https://github.com/user-attachments/assets/d7bdda65-f20b-4cb1-9cb0-da13df366c95" alt="Logo" width="150" height="150" style="border-radius: 50%;" />
+   <img src="https://github.com/user-attachments/assets/0dd59f4a-f058-46f8-a6db-015cf9bd2f70" alt="Logo" width="150" height="150" style="border-radius: 50%;" />
   </p>
 
   ---
