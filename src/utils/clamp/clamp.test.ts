@@ -1,23 +1,24 @@
+// clamp.test.ts
 import { clamp } from './clamp';
 
-function testClamp() {
-    console.assert(clamp(5, 1, 10) === 5, 'Test Case 1 Failed');
-    console.assert(clamp(0, 1, 10) === 1, 'Test Case 2 Failed');
-    console.assert(clamp(15, 1, 10) === 10, 'Test Case 3 Failed');
+describe('clamp function', () => {
+    test('should return the number when within range', () => {
+        expect(clamp(5, 1, 10)).toBe(5);
+    });
 
-    try {
-        clamp('5' as any, 1, 10);
-    } catch (e) {
-        console.assert(e instanceof TypeError, 'Test Case 4 Failed');
-    }
+    test('should return the minimum value when the number is below the range', () => {
+        expect(clamp(0, 1, 10)).toBe(1);
+    });
 
-    try {
-        clamp(5, 10, 1);
-    } catch (e) {
-        console.assert(e instanceof RangeError, 'Test Case 5 Failed');
-    }
+    test('should return the maximum value when the number is above the range', () => {
+        expect(clamp(15, 1, 10)).toBe(10);
+    });
 
-    console.log('All test cases passed');
-}
+    test('should throw a TypeError if non-number arguments are passed', () => {
+        expect(() => clamp('5' as any, 1, 10)).toThrow(TypeError);
+    });
 
-testClamp();
+    test('should throw a RangeError if min is greater than max', () => {
+        expect(() => clamp(5, 10, 1)).toThrow(RangeError);
+    });
+});
