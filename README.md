@@ -19,7 +19,7 @@ Discord: https://discord.gg/DTJV27BYwA
 
 
 
-# React Utils Library
+# React Smart Utils Library
 
 A comprehensive set of utility functions and components designed to streamline development with React and TypeScript. This library helps improve your workflow with reusable components and functions, customizable and extensible to meet the needs of various React projects.
 
@@ -39,13 +39,14 @@ A comprehensive set of utility functions and components designed to streamline d
 
 ## Installation
 
-To install the React Utils library, use npm or yarn:
+To install the React Smart Utils library, use npm or yarn:
+
 
 ```bash
-npm install react-utils
+npm install react-smart-utils
 ```
   or 
  
 ```bash
-yarn add react-utils 
+yarn add react-smart-utils
 ```
