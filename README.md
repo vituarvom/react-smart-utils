@@ -27,10 +27,15 @@ A comprehensive set of utility functions and components designed to streamline d
 
 ## Table of Contents
 
-- [React Smart Utils Library](#react-smart-utils-library)
-  - [Table of Contents](#table-of-contents)
-  - [Installation](#installation)
-  - [Features](#features)
+[Installation](#installation)
+[Features](#features)
+[Usage](#usage)
+[Example Hooks](#example-hooks)
+[Available Hooks](#available-hooks)
+[Contributing](#contributing)
+[Code Style Guidelines](#code-style-guidelines)
+[Roadmap](#roadmap)
+[License](#license)
 
 ---
 
