@@ -62,3 +62,35 @@ yarn add react-smart-utils
 - **Tree-shakable**: Only include what you need, minimizing bundle size.
 
 ---
+
+
+
+
+## Contributing
+
+We welcome contributions! Please follow the instructions below to set up the project for development and make your contributions.
+
+1. **Fork the repository**on GitHub.
+2. **Clone your forked repository**:
+
+```bash
+   git clone https://github.com/your-username/react-smart-utils.git
+   cd react-smart-utils
+```
+   
+   
+3.**Create a new branch for your feature:**
+
+```bash
+git checkout -b feature/my-new-feature
+```
+
+
+4. **Make your changes, then commit and push:**
+
+```bash
+git commit -m "Add new feature"
+git push origin feature/my-new-feature
+```
+
+**Submit a Pull Request with a detailed explanation of your changes.**
