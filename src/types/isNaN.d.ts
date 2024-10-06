@@ -4,7 +4,6 @@
  * @param value - The value to check.
  * @returns Returns true if the value is NaN, otherwise false.
  */
-declare function isNotANumber(
-  value: number | string | bigint | object
+export declare function isNotANumber(
+  value: unknown
 ): boolean;
-export default isNotANumber;
