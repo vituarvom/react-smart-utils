@@ -1,0 +1,1 @@
+declare function lowercase(srt:string):string;
