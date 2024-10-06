@@ -1,1 +1,1 @@
-import { clamp } from "./clamp/clamp";
+import { clamp } from "./function/clamp/clamp";

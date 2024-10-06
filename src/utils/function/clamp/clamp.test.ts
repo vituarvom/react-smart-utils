@@ -3,7 +3,7 @@ import { clamp } from './clamp';
 
 describe('clamp function', () => {
     test('should return the number when within range', () => {
-        expect(clamp(5, 1, 10)).toBe(5);
+        expect(clamp(1e20, 1e10, 1e15)).toBe(5);
     });
 
     test('should return the minimum value when the number is below the range', () => {
