@@ -1,55 +1,33 @@
 import { toUpperCase } from "./toUpperCase";
 
 describe("toUpperCase", () => {
-  it("should convert lowercase string to uppercase", () => {
-    expect(toUpperCase("hello")).toBe("HELLO");
+  test("should convert a valid string to uppercase", () => {
+    const result = toUpperCase("hello");
+    expect(result).toBe("HELLO");
   });
 
-  it("should convert mixed-case string to uppercase", () => {
-    expect(toUpperCase("HeLLo")).toBe("HELLO");
+  test("should return an empty string when input is an empty string", () => {
+    const result = toUpperCase("");
+    expect(result).toBe("");
   });
 
-  it("should handle already uppercase strings", () => {
-    expect(toUpperCase("HELLO")).toBe("HELLO");
-  });
+  test.each([
+    [123],
+    [true],
+    [null],
+    [undefined],
+    [Symbol("symbol")],
+    [BigInt(123)],
+    [[]],
+    [{} as any],
+  ])("should throw a TypeError for non-string input (%s)", (input) => {
+    const expectedType = "string";
+    const receivedType = typeof input;
 
-  it("should handle empty string input", () => {
-    expect(toUpperCase("")).toBe("");
-  });
+    const expectedError = new TypeError(
+      `rsc: error from toUpperCase: Expected type ${expectedType} but received ${receivedType}.`
+    );
 
-  it("should return empty string for non-string input: number", () => {
-    expect(toUpperCase(123 as unknown as string)).toBe("");
-  });
-
-  it("should return empty string for non-string input: boolean", () => {
-    expect(toUpperCase(true as unknown as string)).toBe("");
-  });
-
-  it("should return empty string for non-string input: object", () => {
-    expect(toUpperCase({} as unknown as string)).toBe("");
-  });
-
-  it("should return empty string for non-string input: array", () => {
-    expect(toUpperCase(["a", "b"] as unknown as string)).toBe("");
-  });
-
-  it("should return empty string for non-string input: null", () => {
-    expect(toUpperCase(null as unknown as string)).toBe("");
-  });
-
-  it("should return empty string for non-string input: undefined", () => {
-    expect(toUpperCase(undefined as unknown as string)).toBe("");
-  });
-
-  it("should not throw errors for unexpected types", () => {
-    expect(() => toUpperCase(Symbol("it") as unknown as string)).not.toThrow();
-  });
-
-  it("should handle strings with special characters", () => {
-    expect(toUpperCase("@hello!")).toBe("@HELLO!");
-  });
-
-  it("should handle strings with numbers", () => {
-    expect(toUpperCase("123abc")).toBe("123ABC");
+    expect(() => toUpperCase(input)).toThrow(expectedError);
   });
 });

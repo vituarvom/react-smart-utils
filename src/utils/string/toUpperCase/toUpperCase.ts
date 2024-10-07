@@ -1,12 +1,16 @@
+import ErrorHandler from "../../../services/error-handler.service";
+
 /**
- * Description
- * @param {string} str:string
- * @returns {string}
+ * The function `toUpperCase` takes a string input and returns the input string converted to uppercase,
+ * with error handling for non-string inputs.
+ * @param {string} str - string
+ * @returns the input string `str` converted to uppercase using the `toUpperCase` method.
  */
 export function toUpperCase(str: string): string {
+  const errorHandler = new ErrorHandler("toUpperCase");
+
   if (typeof str !== "string") {
-    console.error("Invalid parameter: Expected a string.");
-    return "";
+    errorHandler.throwError("TypeError", "string", str);
   }
   return str.toUpperCase();
 }
