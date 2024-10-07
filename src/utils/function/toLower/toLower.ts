@@ -6,6 +6,11 @@
  */
 
 export function toLower(str:string):string{
-    
+    if(typeof str !=='string'){
+        throw new TypeError('input must be a string');
+    }
+    if(str===null || str === undefined){
+        throw new TypeError('input cannot be null or undefined')
+    };
     return str.toLocaleLowerCase();
-}
+};

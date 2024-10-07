@@ -1,1 +1,1 @@
-declare function lowercase(srt:string):string;
+declare function toLower(str:string):string;

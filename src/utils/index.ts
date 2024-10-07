@@ -1,0 +1,1 @@
+export { toLower } from "./function/toLower/toLower";
