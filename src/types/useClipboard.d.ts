@@ -1,0 +1,1 @@
+export declare function useClipboard(text: string): [string, () => void]
