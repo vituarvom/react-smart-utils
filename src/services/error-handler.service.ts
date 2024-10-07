@@ -53,18 +53,15 @@ class ErrorHandler {
     const actualType = typeof receivedValue;
     const errorMessage = `rsc: error from ${this.functionName}: Expected type ${expectedType} but received ${actualType}.`;
 
-    switch (errorType) {
-      case "TypeError":
-        throw new TypeError(errorMessage);
-      case "RangeError":
-        throw new RangeError(errorMessage);
-      case "ReferenceError":
-        throw new ReferenceError(errorMessage);
-      case "SyntaxError":
-        throw new SyntaxError(errorMessage);
-      default:
-        throw new Error(errorMessage);
-    }
+    const errorClasses: { [key in ErrorType]: new (message: string) => Error } = {
+      TypeError,
+      RangeError,
+      ReferenceError,
+      SyntaxError,
+      Error,
+    };
+    const ErrorConstructor = errorClasses[errorType] || Error;
+    throw new ErrorConstructor(errorMessage);
   }
 
   /**
