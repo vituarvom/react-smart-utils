@@ -1,26 +1,35 @@
-import { useRef, useEffect, useState } from 'react';
+import { useEffect, useRef } from "react";
+import ErrorHandler from "../../services/error-handler.service";
 
 /**
- * Custom hook that tracks the previous value of a variable.
- * @param {number} value - The value to track.
- * @returns {number | undefined} - The previous value, or undefined on the first render.
- * @throws Will throw an error if the value is undefined.
+ * The `usePrevious` function in TypeScript allows you to store and retrieve the previous value of a
+ * variable in a React functional component.
+ * @param {T} value - The `value` parameter in the `usePrevious` function is the value for which you
+ * want to keep track of the previous value. This function is designed to be used in React functional
+ * components to store and retrieve the previous value of a given input value.
+ * @returns The `usePrevious` function returns the previous value of the input value passed to it.
  */
-export function usePrevious<T>(value: T): T | undefined {
-  // Handle the case where the value is explicitly undefined
+
+export function usePrevious<T>(value: T): T | null {
+  const errorHandler = new ErrorHandler("usePrevious");
+
   if (value === undefined) {
-    throw new Error("usePrevious hook requires a defined value");
+    errorHandler.throwHookError("usePrevious", "defined value", value);
   }
 
+  if (typeof value === "function") {
+    errorHandler.throwHookError(
+      "usePrevious",
+      "non-function value (avoid passing functions directly to usePrevious)",
+      value
+    );
+  }
 
-
-  const ref = useRef<T | undefined>(undefined); 
+  const ref = useRef<T | null>(null);
 
   useEffect(() => {
-    ref.current = value; 
+    ref.current = value;
   }, [value]);
 
-  return ref.current; 
+  return ref.current;
 }
-
-

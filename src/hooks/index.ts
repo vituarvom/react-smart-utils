@@ -1,2 +1,2 @@
 export { useToggle } from "./useToggle/useToggle";
-export {usePrevious} from "./usePrevious/usePrevious"
+export { usePrevious } from "./usePrevious/usePrevious";
