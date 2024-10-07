@@ -8,19 +8,21 @@ import React, { useEffect, useState } from 'react';
  * @property {number} height - The current height of the window in pixels.
  */
 export const useWindowReSize = () => {
-    // Initialize state with current window dimensions
     const [windowSize, setWindowSize] = useState({
         width: window.innerWidth,
         height: window.innerHeight,
     });
 
     useEffect(() => {
-        
         const handleWindowSize = () => {
-            setWindowSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            });
+            try {
+                setWindowSize({
+                    width: window.innerWidth,
+                    height: window.innerHeight,
+                });
+            } catch (err) {
+                console.error("Error while updating window size: ", err);
+            }
         };
 
         window.addEventListener("resize", handleWindowSize);
@@ -28,8 +30,7 @@ export const useWindowReSize = () => {
         return () => {
             window.removeEventListener("resize", handleWindowSize);
         };
-    }, []); 
-
+    }, []);
 
     return windowSize;
 };
