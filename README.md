@@ -1,9 +1,13 @@
 
+  <p align="center">
+    ⚠️ This library is in beta version might be all hooks are not yet ready! we will soon dispatch hooks with bulletproof tests 🚀
+  </p>
 
-
+  <br />
+ 
 
   <p align="center">
-   <img src="https://github.com/user-attachments/assets/0dd59f4a-f058-46f8-a6db-015cf9bd2f70" alt="Logo" width="150" height="150" style="border-radius: 50%;" />
+   <img src="https://github.com/user-attachments/assets/0dd59f4a-f058-46f8-a6db-015cf9bd2f70" alt="Logo" width="400" height="400" style="border-radius: 50%;" />
   </p>
 
   ---
@@ -24,6 +28,9 @@ Discord: https://discord.gg/DTJV27BYwA
 A comprehensive set of utility functions and components designed to streamline development with React and TypeScript. This library helps improve your workflow with reusable components and functions, customizable and extensible to meet the needs of various React projects.
 
 ---
+
+- [Docs](https://react-smart-utils.netlify.app/)
+
 
 ## Table of Contents
 
