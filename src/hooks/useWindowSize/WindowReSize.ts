@@ -1,37 +1,45 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
+/**
+ * Interface for window size
+ */
+interface WindowSize {
+  width: number;
+  height: number;
+}
 
 /**
  * Custom hook to track and return the current window size.
  * 
- * @returns {Object} The current width and height of the window.
- * @property {number} width - The current width of the window in pixels.
- * @property {number} height - The current height of the window in pixels.
+ * @returns {WindowSize} The current width and height of the window.
  */
-export const useWindowReSize = () => {
-    const [windowSize, setWindowSize] = useState({
-        width: typeof window !== 'undefined' ? window.innerWidth : 0,
-        height: typeof window !== 'undefined' ? window.innerHeight : 0,
-    });
+const useWindowReSize = (): WindowSize => {
+  const [windowSize, setWindowSize] = useState<WindowSize>({
+    width: typeof window !== 'undefined' ? window.innerWidth : 0,
+    height: typeof window !== 'undefined' ? window.innerHeight : 0,
+  });
 
-    
-    useEffect(() => {
-        const handleWindowSize = () => {
-            try {
-                setWindowSize({
-                    width: window.innerWidth,
-                    height: window.innerHeight,
-                });
-            } catch (err) {
-                console.error("Error while updating window size: ", err);
-            }
-        };
+  useEffect(() => {
+    const handleWindowSize = () => {
+      try {
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+      } catch (err) {
+        console.error('Error while updating window size:', err);
+      }
+    };
 
-        window.addEventListener("resize", handleWindowSize);
+    window.addEventListener('resize', handleWindowSize);
 
-        return () => {
-            window.removeEventListener("resize", handleWindowSize);
-        };
-    }, []);
+    // Cleanup on component unmount
+    return () => {
+      window.removeEventListener('resize', handleWindowSize);
+    };
+  }, []);
 
-    return windowSize;
+  return windowSize;
 };
+
+export default useWindowReSize;

@@ -1,8 +1,24 @@
+
 import { renderHook, act } from '@testing-library/react-hooks';
-import { useWindowReSize } from './WindowReSize';
+import useWindowReSize from './WindowReSize';
 
 describe('useWindowReSize hook', () => {
+ 
+  const resizeWindow = (width: number, height: number) => {
+    act(() => {
+      window.innerWidth = width;
+      window.innerHeight = height;
+      window.dispatchEvent(new Event('resize'));
+    });
+  };
+
   beforeEach(() => {
+    window.innerWidth = 1024;
+    window.innerHeight = 768;
+  });
+
+  afterEach(() => {
+    // Reset window dimensions after each test
     window.innerWidth = 1024;
     window.innerHeight = 768;
   });
@@ -17,11 +33,7 @@ describe('useWindowReSize hook', () => {
   it('should update width and height on window resize', () => {
     const { result } = renderHook(() => useWindowReSize());
 
-    act(() => {
-      window.innerWidth = 800;
-      window.innerHeight = 600;
-      window.dispatchEvent(new Event('resize'));
-    });
+    resizeWindow(800, 600);
 
     expect(result.current.width).toBe(800);
     expect(result.current.height).toBe(600);
