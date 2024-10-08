@@ -18,7 +18,7 @@ describe('useWindowReSize hook', () => {
   });
 
   afterEach(() => {
-    // Reset window dimensions after each test
+    
     window.innerWidth = 1024;
     window.innerHeight = 768;
   });
