@@ -6,3 +6,6 @@
 
 # Build files
 /dist
+
+yarn.lock
+package-lock.json
