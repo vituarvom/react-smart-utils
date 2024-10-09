@@ -96,6 +96,32 @@ class ErrorHandler {
   ): never {
     this.throwError("ReferenceError", expectedReference, receivedValue);
   }
+
+  /**
+   * Throws a custom error message for hooks.
+   * @param {string} hookName - The name of the hook.
+   * @param {string} expectedType - The expected data type or condition.
+   * @param {any} receivedValue - The actual value that caused the error.
+   */
+  public throwHookError(
+    hookName: string,
+    expectedType: string,
+    receivedValue?: any,
+    options?: ErrorOptions
+  ): never {
+    const errorMessage = `rsc: error in hook "${hookName}": Expected type ${expectedType}, but received ${typeof receivedValue}.`;
+    throw new Error(errorMessage, options);
+  }
+
+ /**
+  * The function `throwInvalidHookUsage` throws an error message indicating that a hook must be called
+  * within a function component or another hook.
+  * @param {string} hookName - The `hookName` parameter in the `throwInvalidHookUsage` function
+  * represents the name of the hook that was called incorrectly.
+  */
+  public throwInvalidHookUsage(hookName: string): never {
+    throw new Error(`Invalid hook call: ${hookName} must be called within a function component or another hook.`);
+  }
 }
 
 export default ErrorHandler;
