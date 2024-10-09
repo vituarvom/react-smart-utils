@@ -70,8 +70,17 @@ class ErrorHandler {
    * @param {string} expectedType - The expected data type or condition.
    * @param {any} receivedValue - The actual value that caused the error.
    */
-  public throwTypeError(expectedType: Type, receivedValue: any): never {
-    this.throwError("TypeError", expectedType.toString(), receivedValue);
+  public throwTypeError(
+    expectedType: Type | Type[],
+    receivedValue: any
+  ): never {
+    this.throwError(
+      "TypeError",
+      Array.isArray(expectedType)
+        ? expectedType.join(" or ").toString()
+        : expectedType.toString(),
+      receivedValue
+    );
   }
 
   /**
@@ -113,14 +122,16 @@ class ErrorHandler {
     throw new Error(errorMessage, options);
   }
 
- /**
-  * The function `throwInvalidHookUsage` throws an error message indicating that a hook must be called
-  * within a function component or another hook.
-  * @param {string} hookName - The `hookName` parameter in the `throwInvalidHookUsage` function
-  * represents the name of the hook that was called incorrectly.
-  */
+  /**
+   * The function `throwInvalidHookUsage` throws an error message indicating that a hook must be called
+   * within a function component or another hook.
+   * @param {string} hookName - The `hookName` parameter in the `throwInvalidHookUsage` function
+   * represents the name of the hook that was called incorrectly.
+   */
   public throwInvalidHookUsage(hookName: string): never {
-    throw new Error(`Invalid hook call: ${hookName} must be called within a function component or another hook.`);
+    throw new Error(
+      `Invalid hook call: ${hookName} must be called within a function component or another hook.`
+    );
   }
 }
 
