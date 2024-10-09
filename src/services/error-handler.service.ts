@@ -32,7 +32,7 @@ type Type = NonPrimitiveType | PrimitiveType;
  * It supports different types of errors and generates dynamic messages.
  */
 class ErrorHandler {
-  private functionName: string;
+  private readonly functionName: string;
 
   constructor(functionName: string) {
     this.functionName = functionName;
