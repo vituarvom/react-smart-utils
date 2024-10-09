@@ -1,20 +1,24 @@
+import ErrorHandler from "../../../services/error-handler.service";
+
 /**
- * Checks if an object has a specific key as its own property.
- *
- * @param {object} obj - The object to check.
- * @param {string | symbol} key - The key to check for.
- * @returns {boolean} True if the key exists as an own property, false otherwise.
+ * The `hasKey` function checks if an object has a specific key and returns a boolean value.
+ * @param {object} obj - The `obj` parameter is the object that you want to check for the presence of a
+ * specific key.
+ * @param {string | symbol} key - The `key` parameter in the `hasKey` function is the property key
+ * (string or symbol) that you want to check for existence in the given object.
+ * @returns The `hasKey` function returns a boolean value indicating whether the provided object `obj`
+ * has the specified key `key`.
  */
 export function hasKey(obj: object, key: string | symbol): boolean {
-    // Check if the first parameter is an object
-    if (typeof obj !== 'object' || obj === null) {
-        throw new TypeError('First argument must be an object');
-    }
-    
-    // Check if the second parameter is a string or symbol
-    if (typeof key !== 'string' && typeof key !== 'symbol') {
-        throw new TypeError('Second argument must be a string or symbol');
-    }
-    
-    return Object.prototype.hasOwnProperty.call(obj, key);
+  const errorHandler = new ErrorHandler("hasKey");
+
+  if (typeof obj !== "object" || obj === null) {
+    errorHandler.throwTypeError("object", typeof obj);
+  }
+
+  if (typeof key !== "string" && typeof key !== "symbol") {
+    errorHandler.throwTypeError(['symbol', 'string'], typeof key);
+  }
+
+  return Object.prototype.hasOwnProperty.call(obj, key);
 }

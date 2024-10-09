@@ -1,4 +1,4 @@
-import {hasKey} from './hasKey'
+import { hasKey } from "./hasKey";
 
 
 describe('hasKey function', () => {
