@@ -1,1 +1,2 @@
-import { clamp } from "./function/clamp/clamp";
+export * from "./function";
+export * from "./string";
