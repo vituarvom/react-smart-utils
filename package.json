@@ -1,0 +1,20 @@
+{
+  "devDependencies": {
+    "husky": "^9.1.6"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "scripts": {
+    "prettier:fix": "prettier --write .",
+    "eslint:fix": "eslint --fix ."
+  }
+}

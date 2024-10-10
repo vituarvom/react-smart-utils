@@ -9,7 +9,10 @@ import ErrorHandler from "../../../services/error-handler.service";
  * @returns The `hasKey` function returns a boolean value indicating whether the provided object `obj`
  * has the specified key `key`.
  */
-export function hasKey(obj: object, key: string | symbol): boolean {
+export function hasKey(
+  obj: object,
+  key: string | symbol
+): boolean {
   const errorHandler = new ErrorHandler("hasKey");
 
   if (typeof obj !== "object" || obj === null) {
@@ -17,7 +20,10 @@ export function hasKey(obj: object, key: string | symbol): boolean {
   }
 
   if (typeof key !== "string" && typeof key !== "symbol") {
-    errorHandler.throwTypeError(['symbol', 'string'], typeof key);
+    errorHandler.throwTypeError(
+      ["symbol", "string"],
+      typeof key
+    );
   }
 
   return Object.prototype.hasOwnProperty.call(obj, key);

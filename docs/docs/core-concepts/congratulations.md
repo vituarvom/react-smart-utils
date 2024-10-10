@@ -27,3 +27,4 @@ Utilities are simple, reusable functions that perform a specific task. They help
 import { kebabCase } from 'react-utils';
 
 const str = kebabCase('React Utils Library'); // 'react-utils-library'
+```

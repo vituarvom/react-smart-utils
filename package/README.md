@@ -1,27 +1,19 @@
-
   <p align="center">
     ⚠️ This library is in beta version might be all hooks are not yet ready! we will soon dispatch hooks with bulletproof tests 🚀
   </p>
 
   <br />
- 
 
   <p align="center">
    <img src="https://github.com/user-attachments/assets/0dd59f4a-f058-46f8-a6db-015cf9bd2f70" alt="Logo" width="400" height="400" style="border-radius: 50%;" />
   </p>
 
-  ---
+---
 
-
-![npm](https://img.shields.io/npm/v/react-smart-utils) 
+![npm](https://img.shields.io/npm/v/react-smart-utils)
 [![Discord](https://img.shields.io/discord/123456789012345678)](https://discord.gg/DTJV27BYwA)
 
 Discord: https://discord.gg/DTJV27BYwA
-
-
-
-
-
 
 # React Smart Utils Library
 
@@ -30,7 +22,6 @@ A comprehensive set of utility functions and components designed to streamline d
 ---
 
 - [Docs](https://react-smart-utils.netlify.app/)
-
 
 ## Table of Contents
 
@@ -50,15 +41,16 @@ A comprehensive set of utility functions and components designed to streamline d
 
 To install the React Smart Utils library, use npm or yarn:
 
-
 ```bash
 npm install react-smart-utils
 ```
-  or 
- 
+
+or
+
 ```bash
 yarn add react-smart-utils
 ```
+
 ---
 
 ## Features
@@ -69,9 +61,6 @@ yarn add react-smart-utils
 - **Tree-shakable**: Only include what you need, minimizing bundle size.
 
 ---
-
-
-
 
 ## Contributing
 
@@ -84,14 +73,12 @@ We welcome contributions! Please follow the instructions below to set up the pro
    git clone https://github.com/your-username/react-smart-utils.git
    cd react-smart-utils
 ```
-   
-   
+
 3.**Create a new branch for your feature:**
 
 ```bash
 git checkout -b feature/my-new-feature
 ```
-
 
 4. **Make your changes, then commit and push:**
 

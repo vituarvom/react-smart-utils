@@ -3,9 +3,12 @@ import { usePrevious } from "./usePrevious";
 
 describe("usePrevious", () => {
   it("should return the correct previous value when changing from a number to another number", () => {
-    const { result, rerender } = renderHook(({ value }) => usePrevious(value), {
-      initialProps: { value: 5 },
-    });
+    const { result, rerender } = renderHook(
+      ({ value }) => usePrevious(value),
+      {
+        initialProps: { value: 5 },
+      }
+    );
 
     rerender({ value: 10 });
     expect(result.current).toBe(5);
@@ -21,9 +24,12 @@ describe("usePrevious", () => {
   });
 
   it("should return the previous value on subsequent renders", () => {
-    const { result, rerender } = renderHook(({ value }) => usePrevious(value), {
-      initialProps: { value: 1 },
-    });
+    const { result, rerender } = renderHook(
+      ({ value }) => usePrevious(value),
+      {
+        initialProps: { value: 1 },
+      }
+    );
 
     // First render
     expect(result.current).toBeNull();
@@ -36,7 +42,9 @@ describe("usePrevious", () => {
   });
 
   it("should throw an error if the value is undefined", () => {
-    const { result } = renderHook(() => usePrevious(undefined));
+    const { result } = renderHook(() =>
+      usePrevious(undefined)
+    );
 
     expect(result.error).toEqual(
       new Error(
@@ -52,7 +60,9 @@ describe("usePrevious", () => {
 
     const mockFunction = () => {};
 
-    const { result } = renderHook(() => usePrevious(mockFunction));
+    const { result } = renderHook(() =>
+      usePrevious(mockFunction)
+    );
 
     expect(result.error).toEqual(functionError);
   });
@@ -61,9 +71,12 @@ describe("usePrevious", () => {
     const initialObject = { key: "value" };
     const newObject = { key: "new value" };
 
-    const { result, rerender } = renderHook((props) => usePrevious(props), {
-      initialProps: initialObject,
-    });
+    const { result, rerender } = renderHook(
+      (props) => usePrevious(props),
+      {
+        initialProps: initialObject,
+      }
+    );
 
     expect(result.current).toBe(null);
     rerender(newObject);

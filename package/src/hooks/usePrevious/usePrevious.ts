@@ -14,7 +14,11 @@ export function usePrevious<T>(value: T): T | null {
   const errorHandler = new ErrorHandler("usePrevious");
 
   if (value === undefined) {
-    errorHandler.throwHookError("usePrevious", "defined value", value);
+    errorHandler.throwHookError(
+      "usePrevious",
+      "defined value",
+      value
+    );
   }
 
   if (typeof value === "function") {

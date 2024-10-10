@@ -19,15 +19,20 @@ describe("toUpperCase", () => {
     [Symbol("symbol")],
     [BigInt(123)],
     [[]],
-    [{} as any],
-  ])("should throw a TypeError for non-string input (%s)", (input) => {
-    const expectedType = "string";
-    const receivedType = typeof input;
+    [{} as unknown],
+  ])(
+    "should throw a TypeError for non-string input (%s)",
+    (input) => {
+      const expectedType = "string";
+      const receivedType = typeof input;
 
-    const expectedError = new TypeError(
-      `rsc: error from toUpperCase: Expected type ${expectedType} but received ${receivedType}.`
-    );
+      const expectedError = new TypeError(
+        `rsc: error from toUpperCase: Expected type ${expectedType} but received ${receivedType}.`
+      );
 
-    expect(() => toUpperCase(input)).toThrow(expectedError);
-  });
+      expect(() => toUpperCase(input as string)).toThrow(
+        expectedError
+      );
+    }
+  );
 });

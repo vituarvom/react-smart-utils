@@ -1,11 +1,11 @@
 // src/components/Tabs.js
-import React from "react";
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
-import CodeBlock from "@theme/CodeBlock";
-import Heading from "@theme/MDXComponents/Heading";
+import React from 'react';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+import Heading from '@theme/MDXComponents/Heading';
 
-const RSUTabs = ({ tabs }) => {
+const RSUTabs = () => {
   return (
     <Tabs>
       <TabItem value="npm" label="npm">
@@ -24,7 +24,15 @@ const RSUTabs = ({ tabs }) => {
 
 export default RSUTabs;
 
-export const ExampleCodeBlocks = ({ jsCode, tsCode, api }) => {
+export const ExampleCodeBlocks = ({
+  jsCode,
+  tsCode,
+  api,
+}: {
+  jsCode: string;
+  tsCode: string;
+  api: string;
+}) => {
   return (
     <>
       <Heading as="h1">Example code </Heading>

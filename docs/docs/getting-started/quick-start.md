@@ -1,4 +1,4 @@
-# Quick Start 
+# Quick Start
 
 Welcome to the React Utils Library! This guide will help you get started quickly with the essential features of the library.
 
@@ -10,6 +10,3 @@ Welcome to the React Utils Library! This guide will help you get started quickly
 - [Common Utilities](#common-utilities)
 - [Custom Hooks](#custom-hooks)
 - [Example Project](#example-project)
-
-
-

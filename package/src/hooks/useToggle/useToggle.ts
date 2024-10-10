@@ -9,7 +9,9 @@ import { useState } from "react";
  * @returns An array containing the current state value and a function to toggle the state value is
  * being returned.
  */
-export const useToggle = (initialValue: boolean = false) => {
+export const useToggle = (
+  initialValue: boolean = false
+) => {
   const [state, setState] = useState(initialValue);
   const toggle = () => setState(!state);
   return [state, toggle] as const;
