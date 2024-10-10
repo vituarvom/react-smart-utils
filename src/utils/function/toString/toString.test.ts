@@ -19,7 +19,7 @@ describe('toString', () => {
     });
 
     it('should convert an object to a string', () => {
-        expect(toString({ key: 'value' })).toBe("[object Object]");
+        expect(toString({ key: 'value' })).toBe('{"key":"value"}');
     });
 
     it('should handle null and undefined', () => {
