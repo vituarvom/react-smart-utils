@@ -1,0 +1,23 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "always"
+    },
+    "editor.formatOnSave": true,
+    "eslint.validate": [
+        "javascript",
+        "typescript",
+        "typescriptreact",
+        "javascriptreact"
+    ],
+    "eslint.workingDirectories": [
+        {
+            "changeProcessCWD": true,
+            "directory": "./docs"
+        },
+        {
+            "changeProcessCWD": true,
+            "directory": "./package"
+        }
+    ],
+    "prettier.requireConfig": true
+}

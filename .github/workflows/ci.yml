@@ -1,36 +1,72 @@
-# .github/workflows/ci.yml
-
 name: Run Tests on Pull Request
 
-on: 
+on:
   pull_request:
     branches:
-      - main  
+      - main
+      - main-docs
 
 jobs:
-  test:
-    runs-on: ubuntu-latest 
+  package-test:
+    runs-on: ubuntu-latest
+    name: Run Tests for Package
 
     steps:
-    
       - name: Checkout code
         uses: actions/checkout@v3
 
-    
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20.17.0' 
+          node-version: "20.17.0"
 
-      - name: Install dependencies
-        run: yarn install 
+      - name: Navigate to Package Folder
+        run: cd package
 
-      - name: Run Tests
-        run: yarn test  
+      - name: Install dependencies for Package
+        working-directory: ./package
+        run: yarn install
 
-      - name: Upload coverage report
+      - name: Run Tests for Package
+        working-directory: ./package
+        run: yarn test:coverage
+
+      - name: Upload coverage report for Package
         if: success()
         uses: actions/upload-artifact@v3
         with:
-          name: coverage-report
-          path: coverage/
+          name: package-coverage-report
+          path: package/coverage/
+
+  # docs-test is currently disabled due to lack of tests
+  docs-test:
+    if: always() && false # This line ensures the job is skipped
+    runs-on: ubuntu-latest
+    name: Run Tests for Docs (Disabled)
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20.17.0"
+
+      - name: Navigate to Docs Folder
+        run: cd docs
+
+      - name: Install dependencies for Docs
+        working-directory: ./docs
+        run: yarn install
+
+      - name: Run Tests for Docs
+        working-directory: ./docs
+        run: yarn test:coverage
+
+      - name: Upload coverage report for Docs
+        if: success()
+        uses: actions/upload-artifact@v3
+        with:
+          name: docs-coverage-report
+          path: docs/coverage/
