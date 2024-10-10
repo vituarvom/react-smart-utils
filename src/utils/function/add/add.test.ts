@@ -1,4 +1,4 @@
-import { add } from './path/to/your/module'; // Update with actual path
+import { add } from "./add";
 
 describe('add function', () => {
   test('should add two positive numbers correctly', () => {
