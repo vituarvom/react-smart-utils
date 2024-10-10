@@ -23,8 +23,8 @@ const objResult = convertToString({ key: 'value' });
 
 
 
-console.log(numResult);    // "123"
-console.log(floatResult);  // "45.67"
-console.log(boolResult);   // "true"
-console.log(arrayResult);  // "1,2,3"
-console.log(objResult);    // "[object Object]"
+console.log(numResult);    
+console.log(floatResult); 
+console.log(boolResult);   
+console.log(arrayResult);  
+console.log(objResult);    

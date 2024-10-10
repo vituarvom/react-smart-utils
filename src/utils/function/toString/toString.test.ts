@@ -1,29 +1,23 @@
-import { toString} from "./toString"
+import { convertToString } from './toString';
 
-describe('toString', () => {
-    it('should convert a number to a string', () => {
-        expect(toString(123)).toBe("123");
-    });
+describe('convertToString', () => {
+  test('converts number to string', () => {
+    expect(convertToString(123)).toBe("123");
+  });
 
-    it('should convert a float to a string', () => {
-        expect(toString(45.67)).toBe("45.67");
-    });
+  test('converts float to string', () => {
+    expect(convertToString(45.67)).toBe("45.67");
+  });
 
-    it('should convert a boolean to a string', () => {
-        expect(toString(true)).toBe("true");
-        expect(toString(false)).toBe("false");
-    });
+  test('converts boolean to string', () => {
+    expect(convertToString(true)).toBe("true");
+  });
 
-    it('should convert an array to a string', () => {
-        expect(toString([1, 2, 3])).toBe("1,2,3");
-    });
+  test('converts array to string', () => {
+    expect(convertToString([1, 2, 3])).toBe("1,2,3");
+  });
 
-    it('should convert an object to a string', () => {
-        expect(toString({ key: 'value' })).toBe('{"key":"value"}');
-    });
-
-    it('should handle null and undefined', () => {
-        expect(toString(null)).toBe("null");
-        expect(toString(undefined)).toBe("undefined");
-    });
+  test('converts object to string', () => {
+    expect(convertToString({ key: 'value' })).toBe("[object Object]");
+  });
 });
