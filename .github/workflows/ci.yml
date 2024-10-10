@@ -24,9 +24,11 @@ jobs:
         run: cd package
 
       - name: Install dependencies for Package
+        working-directory: ./package
         run: yarn install
 
       - name: Run Tests for Package
+        working-directory: ./package
         run: yarn test
 
       - name: Upload coverage report for Package
