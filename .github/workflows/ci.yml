@@ -57,10 +57,12 @@ jobs:
         run: cd docs
 
       - name: Install dependencies for Docs
-        run: yarn install --cwd docs
+        working-directory: ./docs
+        run: yarn install
 
       - name: Run Tests for Docs
-        run: yarn test --cwd docs
+        working-directory: ./docs
+        run: yarn test
 
       - name: Upload coverage report for Docs
         if: success()
