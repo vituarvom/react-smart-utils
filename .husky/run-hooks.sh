@@ -23,7 +23,7 @@ if git diff --cached --name-only | grep -q "^docs/"; then
   # yarn --cwd docs prettier --check . || (echo '\n\nPrettier failed. Run (` yarn prettier:fix `) to fix the formatting issues.\n\n' && exit 1)
 
   echo "[perttier] is prettifying your code..."
-  yarn --cwd docs pretty-quick --staged
+  yarn --cwd docs prettier -quick --staged
 
   echo "Tests are being running..."
   # yarn --cwd docs test

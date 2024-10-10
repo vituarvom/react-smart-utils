@@ -45,6 +45,7 @@
   "scripts": {
     "build": "tsup",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "lint": "eslint .",
     "format": "prettier --check .",
     "prettier:check": "prettier --check .",

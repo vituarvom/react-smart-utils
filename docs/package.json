@@ -14,7 +14,9 @@
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
      "prettier:fix": "prettier --write .",
-     "eslint:fix": "eslint --fix ."
+     "eslint:fix": "eslint --fix .",
+     "test": "jest",
+     "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@docusaurus/core": "3.5.2",

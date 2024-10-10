@@ -4,7 +4,7 @@ on:
   pull_request:
     branches:
       - main
-      - main-docs 
+      - main-docs
 
 jobs:
   package-test:
@@ -18,7 +18,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20.17.0' 
+          node-version: "20.17.0"
 
       - name: Navigate to Package Folder
         run: cd package
@@ -29,7 +29,7 @@ jobs:
 
       - name: Run Tests for Package
         working-directory: ./package
-        run: yarn test
+        run: yarn test:coverage
 
       - name: Upload coverage report for Package
         if: success()
@@ -51,7 +51,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20.17.0' 
+          node-version: "20.17.0"
 
       - name: Navigate to Docs Folder
         run: cd docs
@@ -62,7 +62,7 @@ jobs:
 
       - name: Run Tests for Docs
         working-directory: ./docs
-        run: yarn test
+        run: yarn test:coverage
 
       - name: Upload coverage report for Docs
         if: success()
