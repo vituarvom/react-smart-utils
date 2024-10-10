@@ -4,7 +4,7 @@ on:
   pull_request:
     branches:
       - main
-      - main-docs  # Added 'docs' branch for PR triggers
+      - main-docs 
 
 jobs:
   package-test:
@@ -24,10 +24,10 @@ jobs:
         run: cd package
 
       - name: Install dependencies for Package
-        run: yarn install --cwd package
+        run: yarn install
 
       - name: Run Tests for Package
-        run: yarn test --cwd package
+        run: yarn test
 
       - name: Upload coverage report for Package
         if: success()
