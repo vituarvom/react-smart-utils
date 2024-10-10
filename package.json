@@ -2,6 +2,7 @@
   "devDependencies": {
     "husky": "^9.1.6"
   },
+  "license": "MIT",
   "lint-staged": {
     "*.{js,ts,tsx}": [
       "eslint --fix",
