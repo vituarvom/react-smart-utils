@@ -140,7 +140,7 @@ describe("throttle function", () => {
 
   test("should execute the function immediately if wait time is 0", () => {
     const func = jest.fn();
-    const throttledFunc = throttle(func, 0);
+    const throttledFunc = throttle(func);
 
     throttledFunc();
     expect(func).toHaveBeenCalledTimes(1);

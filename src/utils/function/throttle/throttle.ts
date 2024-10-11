@@ -17,7 +17,7 @@ type throttleCancel = { cancel: () => void };
 
 export function throttle<T extends (...args: unknown[]) => unknown>(
   func: T,
-  wait: number
+  wait = 0
 ): T & throttleCancel {
   if (typeof func !== "function") {
     throw new TypeError("Expected a function as the first argument");
@@ -28,7 +28,7 @@ export function throttle<T extends (...args: unknown[]) => unknown>(
   }
 
   let lastCall = 0;
-  let timeoutId: NodeJS.Timeout | null = null;
+  let timeoutId: ReturnType<typeof setTimeout> | null = null;
   let lastArgs: Parameters<T> | null = null;
   let lastThis: unknown = null;
 
