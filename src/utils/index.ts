@@ -1,1 +1,2 @@
-export { toLower } from "./function/toLower/toLower";
+export * from "./function";
+export * from "./string";
