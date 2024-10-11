@@ -1,1 +1,2 @@
-import { sleep } from './function/sleep/sleep';
+export * from "./function";
+export * from "./string";
