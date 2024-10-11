@@ -9,9 +9,14 @@ import ErrorHandler from "../../../services/error-handler.service";
  * @param {boolean} [allowInfinity=false] - Whether to allow Infinity as a result or throw an error for large numbers.
  * @returns {number} The clamped value, ensuring it falls between the min and max.
  */
-export function clamp(value: number, min: number, max: number, allowInfinity: boolean = false): number {
+export function clamp(
+  value: number,
+  min: number,
+  max: number,
+  allowInfinity: boolean = false
+): number {
   const errorHandler = new ErrorHandler("clamp");
-  const maxValue = Number.MAX_VALUE;
+  const maxValue = Number.MAX_SAFE_INTEGER;
 
   if (
     typeof value !== "number" ||
@@ -24,7 +29,7 @@ export function clamp(value: number, min: number, max: number, allowInfinity: bo
     );
   }
 
-  if (isNaN(value) || isNaN(min) || isNaN(max)) {
+  if (Number.isNaN(value) || Number.isNaN(min) || Number.isNaN(max)) {
     errorHandler.throwTypeError(
       "number",
       `typeof value: ${typeof value}, min: ${typeof min}, max: ${typeof max}`
@@ -39,7 +44,11 @@ export function clamp(value: number, min: number, max: number, allowInfinity: bo
   }
 
   if (!allowInfinity) {
-    if (Math.abs(value) > maxValue || Math.abs(min) > maxValue || Math.abs(max) > maxValue) {
+    if (
+      Math.abs(value) > maxValue ||
+      Math.abs(min) > maxValue ||
+      Math.abs(max) > maxValue
+    ) {
       errorHandler.throwRangeError(
         "Input values exceed the safe number range in JavaScript",
         "value, min, or max too large"
