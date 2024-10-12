@@ -1,1 +1,2 @@
-export {camelCase} from "./string/camelCase/camelCase"
+export * from "./function";
+export * from "./string";
