@@ -8,8 +8,10 @@
  *          For other types, uses String() to convert.
  */
 
-export function convertToString(value: string | number | boolean | null | undefined): string {
+export function safeToString(value: string | number | boolean | null | undefined): string {
     if (value === undefined) return 'undefined';
+    if (value === null) return 'null';
+
 
     return String(value);
 }
