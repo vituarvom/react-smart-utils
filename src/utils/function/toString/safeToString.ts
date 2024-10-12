@@ -14,13 +14,18 @@
  * 
  * @param value - The value to be converted to a string.
  * @returns A string representation of the input value.
+ * 
+ * @example
+ * safeToString('hello')     // Returns: 'hello'
+ * safeToString(42)          // Returns: '42'
+ * safeToString(true)        // Returns: 'true'
+ * safeToString(null)        // Returns: 'null'
+ * safeToString(undefined)   // Returns: 'undefined'
  */
 
 export function safeToString(value: string | number | boolean | null | undefined): string {
     if (value === undefined) return 'undefined';
     if (value === null) return 'null';
-
-
     return String(value);
 }
 
