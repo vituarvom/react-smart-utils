@@ -1,17 +1,17 @@
 /**
- * The function `convertToStringconvertToString` takes any input value and returns its string representation,
- * with error handling for non-string inputs.
- * @param {any} value - The value to be converted to a string.
- * @returns {string} The input value converted to a string using the `String` constructor.
+ * Converts a given value to its string representation.
+ * Handles various types including string, number, boolean, null, and undefined.
+ *
+ * @param value - The value to be converted, which can be a string, number, boolean, null, or undefined.
+ * @returns The string representation of the input value.
+ *          Returns 'undefined' for undefined values.
+ *          For other types, uses String() to convert.
  */
 
-export function convertToString(value: any): string {
-    try {
-        return String(value);
-    } catch (error) {
-        console.error('Error converting value to string:', error);
-        return '';  
-    }
+export function convertToString(value: string | number | boolean | null | undefined): string {
+    if (value === undefined) return 'undefined';
+
+    return String(value);
 }
 
 
