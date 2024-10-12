@@ -1,23 +1,35 @@
-import { safeToString } from './safeToString';
+import { safeToString } from './safeToString'; 
 
 describe('safeToString', () => {
-  test('converts number to string', () => {
-    expect(safeToString(123)).toBe("123");
+  it('should convert a string to string', () => {
+      expect(safeToString('Hello, world!')).toBe('Hello, world!');
   });
 
-  test('converts float to string', () => {
-    expect(safeToString(45.67)).toBe("45.67");
+  it('should convert a number to string', () => {
+      expect(safeToString(42)).toBe('42');
   });
 
-  test('converts boolean to string', () => {
-    expect(safeToString(true)).toBe("true");
+  it('should convert boolean true to string', () => {
+      expect(safeToString(true)).toBe('true');
   });
 
-  test('converts array to string', () => {
-    expect(safeToString([1, 2, 3])).toBe("1,2,3");
+  it('should convert boolean false to string', () => {
+      expect(safeToString(false)).toBe('false');
   });
 
-  test('converts object to string', () => {
-    expect(safeToString({ key: 'value' })).toBe("[object Object]");
+  it('should return "null" for null input', () => {
+      expect(safeToString(null)).toBe('null');
+  });
+
+  it('should return "undefined" for undefined input', () => {
+      expect(safeToString(undefined)).toBe('undefined');
+  });
+
+  it('should convert number 0 to string "0"', () => {
+      expect(safeToString(0)).toBe('0');
+  });
+
+  it('should return empty string for empty string input', () => {
+      expect(safeToString('')).toBe('');
   });
 });
