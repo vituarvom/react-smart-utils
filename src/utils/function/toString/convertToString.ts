@@ -15,16 +15,6 @@ export function convertToString(value: any): string {
 }
 
 
-const numResult = convertToString(123);
-const floatResult = convertToString(45.67);
-const boolResult = convertToString(true);
-const arrayResult = convertToString([1, 2, 3]);
-const objResult = convertToString({ key: 'value' });
 
 
 
-console.log(numResult);    
-console.log(floatResult); 
-console.log(boolResult);   
-console.log(arrayResult);  
-console.log(objResult);    

@@ -1,4 +1,4 @@
-import { convertToString } from './toString';
+import { convertToString } from './convertToString';
 
 describe('convertToString', () => {
   test('converts number to string', () => {

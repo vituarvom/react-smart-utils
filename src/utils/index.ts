@@ -1,2 +1,2 @@
-export {convertToString} from "./function/toString/toString"
+export {convertToString} from "./function/toString/convertToString"
 
