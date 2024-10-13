@@ -1,1 +1,2 @@
-export { toUpperCase } from "./string/toUpperCase/toUpperCase";
+export * from "./function";
+export * from "./string";
