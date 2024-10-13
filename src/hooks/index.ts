@@ -1,2 +1,2 @@
 export { useToggle } from "./useToggle/useToggle";
-export { useEventListener } from "./useEventListener/useEvenetListener" 
+export { useEventListener } from "./useEventListener/useEventListener" 

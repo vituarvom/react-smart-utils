@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react-hooks";
-import { useEventListener } from "./useEvenetListener";
+import { useEventListener } from "./useEventListener";
 
 describe("useEventListener", () => {
   let addEventListenerMock: jest.SpyInstance;
