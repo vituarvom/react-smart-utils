@@ -34,37 +34,37 @@ describe('toLower', () => {
   });
 
   it('should throw TypeError if input is null', () => {
-    expect(() => toLower(null as unknown as string)).toThrowError(
+    expect(() => toLower(null as unknown as string)).toThrow(
       new TypeError("Input cannot be null or undefined")
     );
   });
 
   it('should throw TypeError if input is undefined', () => {
-    expect(() => toLower(undefined as unknown as string)).toThrowError(
+    expect(() => toLower(undefined as unknown as string)).toThrow(
       new TypeError("Input cannot be null or undefined")
     );
   });
 
   it('should throw TypeError if input is a number', () => {
-    expect(() => toLower(123 as unknown as string)).toThrowError(
+    expect(() => toLower(123 as unknown as string)).toThrow(
       new TypeError("Input must be a string")
     );
   });
 
   it('should throw TypeError if input is an array', () => {
-    expect(() => toLower([1, 2, 3] as unknown as string)).toThrowError(
+    expect(() => toLower([1, 2, 3] as unknown as string)).toThrow(
       new TypeError("Input must be a string")
     );
   });
 
   it('should throw TypeError if input is an object', () => {
-    expect(() => toLower({ key: "value" } as unknown as string)).toThrowError(
+    expect(() => toLower({ key: "value" } as unknown as string)).toThrow(
       new TypeError("Input must be a string")
     );
   });
 
   it('should throw TypeError if input is a boolean', () => {
-    expect(() => toLower(true as unknown as string)).toThrowError(
+    expect(() => toLower(true as unknown as string)).toThrow(
       new TypeError("Input must be a string")
     );
   });
@@ -83,5 +83,28 @@ describe('toLower', () => {
 
   it('should handle strings with emojis without modification', () => {
     expect(toLower("HELLO 🌟 WORLD")).toBe("hello 🌟 world");
+  });
+
+  it('handles non-string input', () => {
+    expect(() => toLower(null)).toThrow();
+    expect(() => toLower(undefined)).toThrow();
+    expect(() => toLower(123 as unknown as string)).toThrow();
+  });
+  
+  it('handles strings with only special characters or numbers', () => {
+    expect(toLower('123!@#')).toBe('123!@#');
+  });
+  
+  it('handles very long strings', () => {
+    const longString = 'A'.repeat(1000000);
+    const start = performance.now();
+    expect(toLower(longString)).toBe(longString.toLowerCase());
+    const end = performance.now();
+    expect(end - start).toBeLessThan(100);
+  });
+  
+  it('handles strings with Unicode characters', () => {
+    expect(toLower('CAFÉ')).toBe('café');
+    expect(toLower('ΕΛΛΗΝΙΚΆ')).toBe('ελληνικά');
   });
 });
