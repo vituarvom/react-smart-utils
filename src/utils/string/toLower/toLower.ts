@@ -1,16 +1,23 @@
 /**
  * Converts a given string to lowercase.
- * 
- * @param {string}str -The input string to convert.
+ *
+ * @param {unknown} input - The input value to convert to lowercase.
  * @returns {string} - The lowercase version of the input string.
+ * @throws {TypeError} - Throws if the input is not a valid string or cannot be converted.
  */
-
-export function toLower(str:string):string{
-    if(typeof str !=='string'){
-        throw new TypeError('input must be a string');
+export function toLower(input: unknown): string {
+    if (input === null || input === undefined) {
+      throw new TypeError("Input cannot be null or undefined");
     }
-    if(str===null || str === undefined){
-        throw new TypeError('input cannot be null or undefined')
-    };
-    return str.toLocaleLowerCase();
-};
+  
+    if (typeof input !== "string") {
+      throw new TypeError("Input must be a string");
+    }
+  
+    if (input.length === 0) {
+      return input;
+    }
+  
+    return input.toLocaleLowerCase();
+  }
+  
