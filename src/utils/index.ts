@@ -1,2 +1,2 @@
-export {safeToString} from "./function/toString/safeToString"
-
+export * from "./function";
+export * from "./string";
