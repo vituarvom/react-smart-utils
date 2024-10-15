@@ -1,4 +1,4 @@
-import capitalize from "./capitalize";
+import {capitalize} from "./capitalize";
 
 describe('capitalize function', () => {
     it("should capitalize the first latter", () => {
