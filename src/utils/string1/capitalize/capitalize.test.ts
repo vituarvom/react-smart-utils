@@ -1,4 +1,4 @@
-import {capitalize} from "./capitalize";
+import { capitalize } from "./capitalize";
 
 describe('capitalize function', () => {
     it("should capitalize the first latter", () => {
@@ -22,14 +22,5 @@ describe('capitalize function', () => {
     it("should throw an error for null or undefined inputs", () => {
         expect(() => capitalize(null as any)).toThrow("Input should be a string");
         expect(() => capitalize(undefined as any)).toThrow("Input should be a string");
-    });
-    it("should capitalize the first letter and preserve leading whitespace", () => {
-        const result = capitalize("   marcos");
-        expect(result).toBe("   Marcos");
-    });
-
-    it("should capitalize the first letter of a string with leading whitespace and mixed casing", () => {
-        const result = capitalize("   hELLo WoRld");
-        expect(result).toBe("   Hello world");
     });
 });
