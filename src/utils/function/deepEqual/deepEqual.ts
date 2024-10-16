@@ -31,14 +31,24 @@ export function deepEqual(value1: unknown, value2: unknown, depth: number = 0, s
         return value1.every((item, index) => deepEqual(item, value2[index], depth + 1, seen));
     }
 
+    // Enhanced: Function to get all keys, including non-enumerable properties and symbols, and sort them
+    const getAllSortedKeys = (obj: object): (string | symbol)[] => 
+        Reflect.ownKeys(obj).sort((a, b) => 
+            a.toString().localeCompare(b.toString())
+        );
+
     // Handle objects
-    const keys1 = Object.keys(value1);
-    const keys2 = Object.keys(value2);
+    const keys1 = getAllSortedKeys(value1);
+    const keys2 = getAllSortedKeys(value2);
 
     if (keys1.length !== keys2.length) return false;
 
     for (const key of keys1) {
-        if (!deepEqual((value1 as Record<string, unknown>)[key], (value2 as Record<string, unknown>)[key], depth + 1, seen)) {
+        // Use Reflect.get to properly handle symbol keys
+        const val1 = Reflect.get(value1, key);
+        const val2 = Reflect.get(value2, key);
+
+        if (!deepEqual(val1, val2, depth + 1, seen)) {
             return false;
         }
     }
