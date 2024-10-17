@@ -5,8 +5,13 @@ describe('shuffleArray', () => {
     const arr = [1, 2, 3, 4, 5];
     const shuffledArr = shuffleArray(arr);
 
-    expect(shuffledArr).toEqual(arr);
-    
+    expect(shuffledArr).not.toEqual(arr);
+    expect(shuffledArr.length).toBe(arr.length);
+    expect(shuffledArr.sort()).toEqual(arr.sort());
+
+    expect(shuffleArray([])).toEqual([]);
+    expect(shuffleArray([1])).toEqual([1]);
+
   });
 
   it('should return an empty array if input is an empty array', () => {
