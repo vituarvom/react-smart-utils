@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const sample = (arr: any[]) => {
+export const sample = (arr: any[]) => {
     const [randomElement, setRandomElement] = useState<any>(null);
 
     useEffect(() => {
@@ -19,5 +19,3 @@ const sample = (arr: any[]) => {
 
     return randomElement;
 }
-
-export default sample;
