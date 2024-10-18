@@ -1,2 +1,2 @@
 export { toUpperCase } from "./toUpperCase/toUpperCase";
-export { camelCase } from "./camelCase/camelCase";
+export { toLower } from "./toLower/toLower";
