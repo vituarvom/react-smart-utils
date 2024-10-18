@@ -1,4 +1,4 @@
-const flattenObject = (
+export const flattenObject = (
   prefix: string = "",
   obj: { [key: string]: any },
   result: { [key: string]: any } = {}
@@ -21,7 +21,3 @@ const flattenObject = (
   }
   return result;
 };
-
-const obj = { a: { b: 1, c: 2 }, d: 3 };
-const flattened = flattenObject("", obj);
-console.log(flattened);
