@@ -8,7 +8,7 @@
  * isNaN(NaN);    // true
  * isNaN(123);    // false
  */
-const isNaN = (value: unknown): boolean => {
+export const isNaN = (value: unknown): boolean => {
   // Use Number.isNaN to ensure the check only returns true for the actual NaN value.
   if (typeof value !== 'number') {
     return false;
@@ -16,4 +16,3 @@ const isNaN = (value: unknown): boolean => {
   
   return Number.isNaN(value)
 };
-export default isNaN;
