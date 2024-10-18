@@ -81,19 +81,29 @@ We welcome contributions! Please follow the instructions below to set up the pro
 2. **Clone your forked repository**:
 
 ```bash
-   git clone https://github.com/your-username/react-smart-utils.git
-   cd package
+git clone https://github.com/your-username/react-smart-utils.git
+cd package
+yarn install
 ```
+
+3.**Test your functions or hooks in smart-app:**
+
+```bash
+cd smart-app
+yarn install
+yarn dev
+```
+
+Note: You can push example code as it helps in preparing documents (When Raise PR you must paste the path in PR description)
    
-   
-3.**Create a new branch for your feature:**
+4.**Create a new branch for your feature:**
 
 ```bash
 git checkout -b feature/my-new-feature
 ```
 
 
-4. **Make your changes, then commit and push:**
+5. **Make your changes, then commit and push:**
 
 ```bash
 git commit -m "Add new feature"
