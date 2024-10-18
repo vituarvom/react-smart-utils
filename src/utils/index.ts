@@ -1,1 +1,0 @@
-import isNaN from "./function/isNaN/isNaN";
