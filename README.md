@@ -82,7 +82,7 @@ We welcome contributions! Please follow the instructions below to set up the pro
 
 ```bash
    git clone https://github.com/your-username/react-smart-utils.git
-   cd react-smart-utils
+   cd package
 ```
    
    
