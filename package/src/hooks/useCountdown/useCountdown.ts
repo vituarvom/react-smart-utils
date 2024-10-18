@@ -6,6 +6,15 @@ interface UseCountdownOptions {
     onComplete?: () => void;
 }
 
+/**
+ * The `useCountdown` function in TypeScript is a custom hook that handles countdown functionality
+ * based on a specified end time with optional callbacks for tick updates and completion.
+ * @param {number | null} endTime - The `endTime` parameter represents the timestamp in milliseconds
+ * when the countdown should end. If `endTime` is `null`, the countdown will not be active.
+ * @param {UseCountdownOptions}  - The `useCountdown` function is a custom React hook that takes in the
+ * following parameters:
+ * @returns The `useCountdown` custom hook returns the current countdown value as a number or `null`.
+ */
 export const useCountdown = (
     endTime: number | null,
     { interval = 1000, onTick, onComplete }: UseCountdownOptions = {}
