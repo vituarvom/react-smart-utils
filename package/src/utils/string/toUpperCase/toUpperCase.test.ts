@@ -19,6 +19,7 @@ describe("toUpperCase", () => {
     [Symbol("symbol")],
     [BigInt(123)],
     [[]],
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     [{} as any],
   ])("should throw a TypeError for non-string input (%s)", (input) => {
     const expectedType = "string";
