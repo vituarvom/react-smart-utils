@@ -1,5 +1,5 @@
 import React from 'react';
-import UseHover from './Components/UseHover'; // Adjust the import path as necessary
+import UseHover from '../../package/src/hooks/useHover/useHover.ts';
 
 const App: React.FC = () => {
   return (
