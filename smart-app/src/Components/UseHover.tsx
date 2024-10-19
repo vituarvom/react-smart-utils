@@ -1,5 +1,5 @@
 import React from 'react';
-import useHover from '../../../package/src/hooks/useHover/useHover'
+import useHover from 'react-smart-utils/src/hooks/useHover/useHover'
 
 const UseHover: React.FC = () => {
   const [isHovered, hoverRef] = useHover<HTMLDivElement>(); // Use the custom hook
