@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 
 /**
  * The `useFetch` hook handles API calls and provides loading and error states.
@@ -16,9 +16,6 @@ export const useFetch = <T>(url: string, options?: RequestInit) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  
-  const memoizedOptions = useMemo(() => options, [JSON.stringify(options)]);
-
   useEffect(() => {
     setLoading(true);
     setError(null);
@@ -29,23 +26,19 @@ export const useFetch = <T>(url: string, options?: RequestInit) => {
 
     const fetchData = async () => {
       try {
-        timeoutId = setTimeout(() => controller.abort(), 10000); 
-        const response = await fetch(url, { ...memoizedOptions, signal });
-        
+        timeoutId = setTimeout(() => controller.abort(), 10000);
+        const response = await fetch(url, { ...options, signal });
+
         if (!response.ok) {
           throw new Error(`Error: ${response.status} ${response.statusText}`);
         }
 
-       
-        let result: T;
         try {
-          result = await response.json();
+          const result = await response.json();
+          setData(result);
         } catch {
           setError('Failed to parse response as JSON');
-          return;
         }
-
-        setData(result);
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') {
           setError('Request timed out');
@@ -60,12 +53,12 @@ export const useFetch = <T>(url: string, options?: RequestInit) => {
     fetchData();
 
     return () => {
-      controller.abort(); 
+      controller.abort();
       if (timeoutId) {
-        clearTimeout(timeoutId); 
+        clearTimeout(timeoutId);
       }
     };
-  }, [url, memoizedOptions]);
+  }, [url, options]);
 
   return { data, loading, error };
 };
