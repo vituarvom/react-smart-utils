@@ -5,7 +5,7 @@
  * array and returns it.
  * @returns The `sample` function returns a random element from the input array `arr`.
  */
-const sample = <T>(arr: T[]): T => {
+export const sample = <T>(arr: T[]): T => {
   if (!Array.isArray(arr)) {
     throw new Error("TypeError: Expected an array as input");
   }

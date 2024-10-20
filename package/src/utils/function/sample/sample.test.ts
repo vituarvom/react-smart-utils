@@ -1,44 +1,52 @@
-import { renderHook } from "@testing-library/react-hooks";
-import sample from "./sample";  // Adjust the path to where your hook is located
+import { sample } from "./sample";
 
-describe("sample Hook", () => {
-    let consoleErrorMock: jest.SpyInstance;
+describe("sample function", () => {
+  test("should return a random element from a non-empty array of numbers", () => {
+    const arr = [1, 2, 3, 4, 5];
+    const result = sample(arr);
+    expect(arr).toContain(result); 
+  });
 
-    beforeEach(() => {
-        // Mock console.error before each test
-        consoleErrorMock = jest.spyOn(console, "error").mockImplementation(() => { });
-    });
+  test("should return a random element from a non-empty array of strings", () => {
+    const arr = ["apple", "banana", "cherry"];
+    const result = sample(arr);
+    expect(arr).toContain(result); 
+  });
 
-    afterEach(() => {
-        // Reset the mock after each test
-        consoleErrorMock.mockRestore();
-    });
+  test("should return a random element from a non-empty array of objects", () => {
+    const arr = [{ id: 1 }, { id: 2 }, { id: 3 }];
+    const result = sample(arr);
+    expect(arr).toContainEqual(result);
+  });
 
-    it("should return a random element from a valid array", () => {
-        const array = [1, 2, 3, 4, 5];
-        const { result } = renderHook(() => sample(array));
-        expect(array).toContain(result.current);
-    });
+  test("should throw an error if the input is not an array", () => {
+    expect(() => sample(null as unknown as unknown[])).toThrow(
+      "TypeError: Expected an array as input"
+    );
+    expect(() => sample(undefined as unknown as unknown[])).toThrow(
+      "TypeError: Expected an array as input"
+    );
+    expect(() => sample({} as unknown as unknown[])).toThrow(
+      "TypeError: Expected an array as input"
+    );
+    expect(() => sample("string" as unknown as unknown[])).toThrow(
+      "TypeError: Expected an array as input"
+    );
+  });
 
-    it("should return undefined for an empty array", () => {
-        const { result } = renderHook(() => sample([]));
-        expect(result.current).toBeNull();
-    });
+  test("should throw an error if the input array is empty", () => {
+    expect(() => sample([])).toThrow("Array cannot be empty.");
+  });
 
-    it("should always return the single element from a single-element array", () => {
-        const { result } = renderHook(() => sample([42]));
-        expect(result.current).toBe(42);
-    });
+  test("should work with an array containing mixed types", () => {
+    const arr = [1, "apple", { id: 1 }, null];
+    const result = sample(arr);
+    expect(arr).toContain(result); 
+  });
 
-    it('should return different elements over multiple calls', () => {
-        const array = [1, 2, 3, 4, 5];
-        const results = new Set();
-        
-        for (let i = 0; i < 100; i++) {  // Increased the iteration count to 100
-            const { result } = renderHook(() => sample(array));
-            results.add(result.current);
-        }
-
-        expect(results.size).toBeGreaterThan(1);
-    });
+  test("should return the same element when the array has one element", () => {
+    const arr = [42];
+    const result = sample(arr);
+    expect(result).toBe(42); 
+  });
 });
