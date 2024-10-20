@@ -1,21 +1,20 @@
-import { useState, useEffect } from "react";
+/**
+ * The `sample` function in TypeScript selects a random element from an input array.
+ * @param {T[]} arr - The `arr` parameter in the `sample` function is an array of type `T`, where `T`
+ * represents the type of elements in the array. The function selects a random element from the input
+ * array and returns it.
+ * @returns The `sample` function returns a random element from the input array `arr`.
+ */
+const sample = <T>(arr: T[]): T => {
+  if (!Array.isArray(arr)) {
+    throw new Error("TypeError: Expected an array as input");
+  }
 
-export const sample = (arr: any[]) => {
-    const [randomElement, setRandomElement] = useState<any>(null);
+  if (arr.length === 0) {
+    throw new Error("Array cannot be empty.");
+  }
 
-    useEffect(() => {
-        if (!Array.isArray(arr)) {
-            console.error("TypeError: Expected an array as input");
-            return;
-        }
+  const randomIndex = Math.floor(Math.random() * arr.length);
 
-        if (arr.length > 0) {
-            const randomIndex = Math.floor(Math.random() * arr.length);
-            setRandomElement(arr[randomIndex]);
-        } else {
-            console.log("The array is empty.");
-        }
-    }, [arr]);
-
-    return randomElement;
-}
+  return arr[randomIndex];
+};
