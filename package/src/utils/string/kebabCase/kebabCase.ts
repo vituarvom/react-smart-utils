@@ -1,4 +1,4 @@
-export function KebabCase(str: string) {
+export function kebabCase(str: string) {
     if (typeof str !== "string") {
         throw new TypeError("error: argument must be a string");
     }
