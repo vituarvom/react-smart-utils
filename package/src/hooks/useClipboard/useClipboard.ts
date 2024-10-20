@@ -19,15 +19,15 @@ export function useClipboard(initialText = '') {
     if (typeof text !== 'string') {
       throw new Error('copy function only accepts strings');
     }
-
-    setIsCopied(false);
+  
     try {
       const textToCopy = text || initialText;
       await navigator.clipboard.writeText(textToCopy);
       setCopiedText(textToCopy);
       setIsCopied(true);
     } catch (err) {
-      throw err;
+      console.error('Failed to copy text: ', err);
+      setIsCopied(false);
     }
   };
 
