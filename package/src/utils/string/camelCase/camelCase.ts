@@ -9,5 +9,5 @@ export function camelCase(str: string): string {
     );
     return firstWord + capitalizedWords.join('');
 }
-console.log(camelCase('React Utils Library'));
-console.log(camelCase('hello world'));          
+camelCase('React Utils Library');
+camelCase('hello world');          
