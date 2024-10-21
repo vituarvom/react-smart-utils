@@ -4,5 +4,6 @@ export function shuffleArray<T>(arr: T[]): T[] {
         const j =Math.floor(Math.random()*(i+1));  
         [arrayCopy[i],arrayCopy[j]]=[arrayCopy[j],arrayCopy[i]];
     }
+    
     return arrayCopy;
 }
