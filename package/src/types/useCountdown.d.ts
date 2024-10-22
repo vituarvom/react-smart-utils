@@ -33,16 +33,21 @@ declare module "hooks" {
    *   - `format` (string or function):  Predefined format options ('hh:mm', 'hh:mm:ss', 'mm:ss', 'ss') or a custom formatting function.
    *
    *
-   *  @param {CountdownControls} countdownControls - Optional settings like interval, onTick, onComplete, and format.
-   *   - `start` (function): To start the timer
-   *   - `pause` (function): To pause the timer
-   *   - `resume` (function): To resume the timer
-   *   - `reset` (function):   To reset the timer
-   *   - `increaseTime` ((x: number) => {}):   To increase the timer by x seconds
-   *   - `decreaseTime` ((x: number) => {}):   To decrease the timer by x seconds
-   *
-   *
-   * @returns [formattedTime, countdownControls] - Countdown time and control functions.
+   *  @param {UseCountdownOptions} options - Optional settings like interval, onTick, onComplete, and format.
+   - `interval` (number): The interval in milliseconds for countdown updates (default is 1000ms).
+   - `onTick` (function): A callback function invoked on each tick.
+   - `onComplete` (function): A callback function invoked when the countdown reaches zero.
+   - `format` (string or function):  Predefined format options ('hh:mm', 'hh:mm:ss', 'mm:ss', 'ss') or a custom formatting function.
+ *
+ * @returns [formattedTime, countdownControls] - Countdown time and control functions.
+   - `formattedTime` (string | number | null): The current countdown time, formatted according to the specified format.
+   - `countdownControls` (CountdownControls): An object containing methods to control the countdown:
+     - `start`: Starts the countdown.
+     - `pause`: Pauses the countdown.
+     - `resume`: Resumes the countdown.
+     - `reset`: Resets the countdown to the initial time.
+     - `increaseTime(seconds: number)`: Increases the countdown time by the specified number of seconds.
+     - `decreaseTime(seconds: number)`: Decreases the countdown time by the specified number of seconds.
    */
   declare function useCountdown(
     initialTimeInSeconds: number, // Initial countdown time in seconds
