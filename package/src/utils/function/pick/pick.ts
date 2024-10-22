@@ -5,30 +5,35 @@
 * @returns {object} - Return the new object
 */
 
-export const pick = (obj: { [key: string]: any }, keys: string[]): { [key: string]: any } => { 
-    const result: {[key: string]: any} = {};
+export const pick = (obj: { [key: string]: any }, keys: string[]): { [key: string]: any } => {
+    const result: { [key: string]: any } = {};
 
-    keys.forEach(key =>{ 
-        const keyParts = key.split('.'); 
+    keys.forEach(key => { 
+        const keyParts = key.split('.');  
         let value = obj; 
-        let currrentValue = result; 
+        let currentValue = result; 
+        let keyExists = true; 
 
-        for(let i=0;i<keyParts.length;i++){ 
+        for (let i = 0; i < keyParts.length; i++) { 
             const part = keyParts[i]; 
 
-         if(value && part in obj){ 
-            value = value[part]; 
+            if (value && part in value) { 
+                value = value[part];
 
-            if(i===keyParts.length-1){  
-                currrentValue[part] = value;
+                if (i === keyParts.length - 1 && keyExists) {
+                    // Assign value at the deepest level
+                    currentValue[part] = value;
+                } else {
+                    // Ensure intermediate objects are initialized properly
+                    currentValue[part] = currentValue[part] || {};
+                    currentValue = currentValue[part];
+                }
             }else{
-                currrentValue[part]=currrentValue[part] || {}; 
-                currrentValue = currrentValue[part]; 
+                keyExists = false;
+                break;
             }
-        }else{
-            break;
         }
-    }
     });
-    return result; 
-   }
+
+    return result;
+};
