@@ -69,7 +69,7 @@ describe('pick function', () => {
     });
 });
 
-it("should return an empty object if the key doesn't exist", () => {
+it("should return an object only with valid key, or empty if doesn't exist", () => {
     const obj = {
       user: {
         name: 'Ram', 
@@ -82,8 +82,9 @@ it("should return an empty object if the key doesn't exist", () => {
       }
     };
   
-    const result = pick(obj, ['user.gender']);
-    expect(result).toEqual({});
+    const result = pick(obj, ['user.gender', 'user.age']);
+    expect(result).toEqual({ user: { age: 20 } });
+
   });
   
 });

@@ -30,6 +30,7 @@ export const pick = (obj: { [key: string]: any }, keys: string[]): { [key: strin
                 }
             }else{
                 keyExists = false;
+                currentValue = {};
                 break;
             }
         }
