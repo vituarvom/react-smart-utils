@@ -1,24 +1,87 @@
-import React from 'react';
-import useHover from '../../package/src/hooks/useHover/useHover';
+import "./App.css";
+import { SectionWrapper } from "./components/common/section-wrapper";
+import UseCountDown from "./components/hooks/UseCountdown";
+import UseLocalStorage from "./components/hooks/UseLocalStorage";
+import UsePrevious from "./components/hooks/UsePrevious";
 
-const App: React.FC = () => {
-  const [isHovered, hoverRef] = useHover<HTMLDivElement>(); // Using the hook
+function App() {
+  const rsu = [
+    {
+      title: "Hooks",
+      children: [
+        {
+          title: "UseCountdown",
+          node: <UseCountDown />,
+        },
+        {
+          title: "UsePrevious",
+          node: <UsePrevious />,
+        },
+        {
+          title: "UseLocalStorage",
+          node: <UseLocalStorage />,
+        },
+        
+      ],
+    },
+    {
+      title: "Utils",
+      children: [
+        {
+          title: "sleep",
+          node: <UseCountDown />,
+        },
+      ],
+    },
+  ];
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>Hover Detection Example</h1>
+    <>
       <div
-        ref={hoverRef}
         style={{
-          width: '200px',
-          height: '200px',
-          backgroundColor: isHovered ? 'green' : 'red',
-          transition: 'background-color 0.3s ease',
+          padding: '2rem',
+          border: "1px dashed yellow",
+          borderRadius: "1.3rem",
         }}
-      />
-      <p>{isHovered ? 'Hovering!' : 'Not hovering'}</p>
-    </div>
+      >
+        <h1>Content</h1>
+
+        <ul>
+          {rsu.map((_rsu, _index) => (
+            <div key={Date.now() + _index}>
+              <li>{_rsu.title}</li>
+              <ol>
+                {_rsu.children.map((__rsu, __index) => (
+                  <li key={Date.now() + __index + _index} title={__rsu.title}>
+                    {__rsu.title}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ))}
+        </ul>
+      </div>
+
+      {rsu.map((_rsu) => {
+        return (
+          <div style={{ paddingLeft: "2%", borderBottomWidth: '2px', borderBottomColor: 'red'}} key={Date.now()}>
+            <a href={_rsu.title} id={_rsu.title}>
+              #{_rsu.title}
+            </a>
+            {_rsu.children.map((__rsu) => (
+              <SectionWrapper
+                key={Date.now()}
+                to={`${_rsu.title}-${__rsu.title}`}
+                title={__rsu.title}
+              >
+                {__rsu.node}
+              </SectionWrapper>
+            ))}
+          </div>
+        );
+      })}
+    </>
   );
-};
+}
 
 export default App;
