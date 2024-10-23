@@ -12,13 +12,14 @@ import { useState, useEffect } from 'react';
  */
 export const useNetwork = () => {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
-  const [networkName, setNetworkName] = useState<string | null>('N/A');
+  const [networkName, setNetworkName] = useState<string | null>(null);
   const [networkSpeed, setNetworkSpeed] = useState<number | null>(null);
-  const [connectionType, setConnectionType] = useState<string | null>('Unknown');
+  const [connectionType, setConnectionType] = useState<string | null>(null);
 
   useEffect(() => {
     const updateNetworkStatus = () => {
       try {
+        // biome-ignore lint/suspicious/noExplicitAny: <explanation>
         const setOfConnection = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection;
 
         setIsOnline(navigator.onLine);
