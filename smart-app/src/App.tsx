@@ -1,6 +1,7 @@
 import "./App.css";
 import { SectionWrapper } from "./components/common/section-wrapper";
 import UseCountDown from "./components/hooks/UseCountdown";
+import UseLocalStorage from "./components/hooks/UseLocalStorage";
 import UsePrevious from "./components/hooks/UsePrevious";
 
 function App() {
@@ -16,6 +17,11 @@ function App() {
           title: "UsePrevious",
           node: <UsePrevious />,
         },
+        {
+          title: "UseLocalStorage",
+          node: <UseLocalStorage />,
+        },
+        
       ],
     },
     {
