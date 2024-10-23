@@ -30,14 +30,17 @@ function debounce<T extends (...args: unknown[]) => void>(
   return debouncedFunction;
 }
 
-export function useLocalStorage<T>(key: keyof T, initialValue?: T[keyof T]) {
-  const [storedValue, setStoredValue] = useState<T[keyof T] | undefined>(() => {
+export function useLocalStorage<T>(key: string, initialValue?: T) {
+  const [storedValue, setStoredValue] = useState<T | undefined>(() => {
     try {
-      if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+      if (
+        typeof window === "undefined" ||
+        typeof localStorage === "undefined"
+      ) {
         return initialValue;
       }
       const item = localStorage.getItem(key as string);
-      return item ? (JSON.parse(item) as T[keyof T]) : initialValue;
+      return item ? (JSON.parse(item) as T) : initialValue;
     } catch (error) {
       console.error(
         `Error reading localStorage key "${key as string}":`,
@@ -48,7 +51,7 @@ export function useLocalStorage<T>(key: keyof T, initialValue?: T[keyof T]) {
   });
   // Debounced localStorage update
   const debouncedSetItem = useCallback(
-    debounce((value: T[keyof T] | unknown) => {
+    debounce((value: T | unknown) => {
       try {
         if (value === null || value === undefined) {
           localStorage.removeItem(key as string);
@@ -57,7 +60,7 @@ export function useLocalStorage<T>(key: keyof T, initialValue?: T[keyof T]) {
         }
       } catch (error) {
         console.error(
-         ` Error setting localStorage key "${key as string}":`,
+          ` Error setting localStorage key "${key as string}":`,
           error
         );
       }
@@ -71,7 +74,7 @@ export function useLocalStorage<T>(key: keyof T, initialValue?: T[keyof T]) {
       if (e.key === key) {
         if (e.newValue !== null) {
           try {
-            setStoredValue(JSON.parse(e.newValue) as T[keyof T]);
+            setStoredValue(JSON.parse(e.newValue) as T);
           } catch (error) {
             console.error(
               `Error parsing storage event for "${key as string}":`,
@@ -89,15 +92,13 @@ export function useLocalStorage<T>(key: keyof T, initialValue?: T[keyof T]) {
       window.removeEventListener("storage", handleStorageChange);
       debouncedSetItem.cancel();
     };
-  }, [key, initialValue]);
+  }, [key, debouncedSetItem]);
 
-  const setValue = (
-    value: T[keyof T] | ((val: T[keyof T] | undefined) => T[keyof T])
-  ) => {
+  const setValue = (value: T | ((val: T | undefined) => T)) => {
     try {
       const valueToStore =
         value instanceof Function ? value(storedValue) : value;
-        setStoredValue(valueToStore);
+      setStoredValue(valueToStore);
       debouncedSetItem(valueToStore);
     } catch (error) {
       console.error(
@@ -107,18 +108,17 @@ export function useLocalStorage<T>(key: keyof T, initialValue?: T[keyof T]) {
     }
   };
 
-  const removeKey = (key: keyof T) => {
+  const removeKey = (keyToRemove: T) => {
     try {
-      localStorage.removeItem(key as string);
+      localStorage.removeItem(keyToRemove as string);
       setStoredValue(initialValue);
     } catch (error) {
       console.error(
-        `Error clearing localStorage key "${key as string}":`,
+        `Error clearing localStorage key "${keyToRemove as string}":`,
         error
       );
     }
   };
 
-
-  return [storedValue, setValue, removeKey, clearAll] as const;
+  return [storedValue, setValue, removeKey] as const;
 }
