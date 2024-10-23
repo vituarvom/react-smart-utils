@@ -33,6 +33,9 @@ function debounce<T extends (...args: unknown[]) => void>(
 export function useLocalStorage<T>(key: keyof T, initialValue?: T[keyof T]) {
   const [storedValue, setStoredValue] = useState<T[keyof T] | undefined>(() => {
     try {
+      if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+        return initialValue;
+      }
       const item = localStorage.getItem(key as string);
       return item ? (JSON.parse(item) as T[keyof T]) : initialValue;
     } catch (error) {
@@ -59,7 +62,7 @@ export function useLocalStorage<T>(key: keyof T, initialValue?: T[keyof T]) {
         );
       }
     }, 300),
-    []
+    [key]
   );
 
   // Handle updates from other tabs
@@ -76,7 +79,7 @@ export function useLocalStorage<T>(key: keyof T, initialValue?: T[keyof T]) {
             );
           }
         } else {
-          setStoredValue
+          setStoredValue(undefined);
         }
       }
     };
@@ -86,7 +89,7 @@ export function useLocalStorage<T>(key: keyof T, initialValue?: T[keyof T]) {
       window.removeEventListener("storage", handleStorageChange);
       debouncedSetItem.cancel();
     };
-  }, [key, initialValue, debouncedSetItem]);
+  }, [key, initialValue]);
 
   const setValue = (
     value: T[keyof T] | ((val: T[keyof T] | undefined) => T[keyof T])
@@ -116,14 +119,6 @@ export function useLocalStorage<T>(key: keyof T, initialValue?: T[keyof T]) {
     }
   };
 
-  const clearAll = () => {
-    try {
-      localStorage.clear(); // Clear all items in localStorage
-      setStoredValue(initialValue); // Reset the stored value
-    } catch (error) {
-      console.error("Error clearing all localStorage items:", error);
-    }
-  };
 
   return [storedValue, setValue, removeKey, clearAll] as const;
 }
