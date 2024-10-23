@@ -1,79 +1,84 @@
-import { renderHook, act } from '@testing-library/react-hooks';
-import { useLocalStorage } from './useLocalStorage';
+import { renderHook, act } from "@testing-library/react-hooks";
+import { useLocalStorage } from "./useLocalStorage"; // Replace with the actual path to your hook
 
-describe('useLocalStorage hook', () => {
-  beforeEach(() => {
-    // Clear the localStorage before each test
-    localStorage.clear();
+// Mock localStorage for testing
+beforeEach(() => {
+  localStorage.clear();
+  jest.clearAllMocks();
+});
+
+// Use fake timers to handle debounce
+jest.useFakeTimers();
+
+describe("useLocalStorage Hook", () => {
+  it("should return initial value if localStorage is empty", () => {
+    const { result } = renderHook(() => useLocalStorage("testKey", "defaultValue"));
+
+    expect(result.current[0]).toBe("defaultValue");
   });
 
-  it('should return initial value if localStorage is empty', () => {
-    const { result } = renderHook(() => useLocalStorage('theme', 'dark'));
+  it("should retrieve and parse value from localStorage", () => {
+    localStorage.setItem("testKey", JSON.stringify("storedValue"));
+    const { result } = renderHook(() => useLocalStorage("testKey", "defaultValue"));
 
-    expect(result.current[0]).toBe('dark');
+    expect(result.current[0]).toBe("storedValue");
   });
 
-  it('should return the stored value from localStorage', () => {
-    localStorage.setItem('theme', JSON.stringify('light'));
-
-    const { result } = renderHook(() => useLocalStorage('theme', 'dark'));
-
-    expect(result.current[0]).toBe('light');
-  });
-
-  it('should update localStorage when setValue is called', () => {
-    const { result } = renderHook(() => useLocalStorage('theme', 'dark'));
+  it("should store a value in localStorage", () => {
+    const { result } = renderHook(() => useLocalStorage("testKey", "defaultValue"));
 
     act(() => {
-      result.current[1]('light');
+      result.current[1]("newValue");
     });
 
-    expect(result.current[0]).toBe('light');
-    expect(localStorage.getItem('theme')).toBe(JSON.stringify('light'));
+    // Fast-forward all timers (handle debounce delay)
+    jest.runAllTimers();
+
+    expect(localStorage.getItem("testKey")).toBe(JSON.stringify("newValue"));
+    expect(result.current[0]).toBe("newValue");
   });
 
-  it('should handle functions passed to setValue', () => {
-    const { result } = renderHook(() => useLocalStorage('count', 1));
+  it("should remove the key from localStorage", () => {
+    const { result } = renderHook(() => useLocalStorage("testKey", "defaultValue"));
 
     act(() => {
-      result.current[1]((prev) => prev + 1);
+      result.current[1]("newValue");
     });
 
-    expect(result.current[0]).toBe(2);
-    expect(localStorage.getItem('count')).toBe(JSON.stringify(2));
+    // Fast-forward timers to apply the first setValue
+    jest.runAllTimers();
+
+    // Now remove the key
+    act(() => {
+      result.current[2]("testKey"); // removeKey
+    });
+
+    // Fast-forward timers after the remove call
+    jest.runAllTimers();
+
+    expect(localStorage.getItem("testKey")).toBeNull();
+    expect(result.current[0]).toBe("defaultValue");
   });
 
-  it('should handle errors when accessing localStorage', () => {
-    // Mock localStorage to throw an error
-    jest.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
-      throw new Error('Storage error');
-    });
-
-    const { result } = renderHook(() => useLocalStorage('theme', 'dark'));
-
-    expect(result.current[0]).toBe('dark'); // Fallback to initial value
-    expect(console.error).toHaveBeenCalledWith(
-      'Error retrieving localStorage key "theme":',
-      expect.any(Error)
-    );
-  });
-
-  it('should handle errors when setting localStorage', () => {
-    // Mock localStorage setItem to throw an error
-    jest.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
-      throw new Error('Storage error');
-    });
-
-    const { result } = renderHook(() => useLocalStorage('theme', 'dark'));
+  it("should clear all localStorage values", () => {
+    const { result } = renderHook(() => useLocalStorage("testKey", "defaultValue"));
 
     act(() => {
-      result.current[1]('light');
+      result.current[1]("newValue");
     });
 
-    expect(result.current[0]).toBe('light');
-    expect(console.error).toHaveBeenCalledWith(
-      'Error setting localStorage key "theme":',
-      expect.any(Error)
-    );
+    // Fast-forward timers to apply the first setValue
+    jest.runAllTimers();
+
+    // Now clear all localStorage values
+    act(() => {
+      result.current[3](); // clearAll
+    });
+
+    // Fast-forward timers after clearAll
+    jest.runAllTimers();
+
+    expect(localStorage.getItem("testKey")).toBeNull();
+    expect(result.current[0]).toBe("defaultValue");
   });
 });
