@@ -1,19 +1,19 @@
 declare module "hooks" {
-  type FormatOptions =
+  export type FormatOptions =
     | "hh:mm"
     | "hh:mm:ss"
     | "mm:ss"
     | "ss"
     | ((timeInSeconds: number) => string);
 
-  interface UseCountdownOptions {
+  export interface UseCountdownOptions {
     interval?: number; // Interval in milliseconds for countdown updates (default 1000ms)
     onTick?: () => void; // Callback invoked on each tick
     onComplete?: () => void; // Callback invoked when countdown reaches zero
     format?: FormatOptions; // Format string or function for formatting countdown time
   }
 
-  interface CountdownControls {
+  export interface CountdownControls {
     start: () => void; // Start the countdown
     pause: () => void; // Pause the countdown
     resume: () => void; // Resume the countdown
@@ -31,13 +31,6 @@ declare module "hooks" {
    *   - `onTick` (function): A callback function invoked on each tick.
    *   - `onComplete` (function): A callback function invoked when the countdown reaches zero.
    *   - `format` (string or function):  Predefined format options ('hh:mm', 'hh:mm:ss', 'mm:ss', 'ss') or a custom formatting function.
-   *
-   *
-   *  @param {UseCountdownOptions} options - Optional settings like interval, onTick, onComplete, and format.
-   - `interval` (number): The interval in milliseconds for countdown updates (default is 1000ms).
-   - `onTick` (function): A callback function invoked on each tick.
-   - `onComplete` (function): A callback function invoked when the countdown reaches zero.
-   - `format` (string or function):  Predefined format options ('hh:mm', 'hh:mm:ss', 'mm:ss', 'ss') or a custom formatting function.
  *
  * @returns [formattedTime, countdownControls] - Countdown time and control functions.
    - `formattedTime` (string | number | null): The current countdown time, formatted according to the specified format.
