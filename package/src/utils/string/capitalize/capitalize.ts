@@ -1,12 +1,10 @@
 export function capitalize(str: string | null | undefined): string {
-    if (str == null) {
-        throw new Error("Input should be a string")
-    }
     if (typeof str !== 'string') {
         throw new Error("Input should be a string");
     }
-    if (str.length === 0) {
-        return str;
+    const filteredString = str.replace(/[^a-zA-Z\s]/g, '');
+    if (filteredString.length === 0) {
+        return '';
     }
-    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    return filteredString.charAt(0).toUpperCase() + filteredString.slice(1).toLowerCase();
 };
