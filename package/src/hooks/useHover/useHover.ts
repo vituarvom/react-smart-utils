@@ -1,4 +1,6 @@
+
 import { useRef, useState, useCallback } from 'react';
+
 
 const useHover = <T extends HTMLElement>() => {
     const [isHovered, setIsHovered] = useState(false);
@@ -31,4 +33,4 @@ const useHover = <T extends HTMLElement>() => {
     return [isHovered, hoverRef] as const;
 };
 
-export default useHover;
+export default useHover; // Ensure it's the default export
