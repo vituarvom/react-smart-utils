@@ -12,22 +12,21 @@ import { useState, useEffect } from 'react';
  */
 export const useNetwork = () => {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
-  const [networkName, setNetworkName] = useState<string | null>(null);
+  const [networkName, setNetworkName] = useState<string | null>('N/A'); // Default to 'N/A'
   const [networkSpeed, setNetworkSpeed] = useState<number | null>(null);
-  const [connectionType, setConnectionType] = useState<string | null>(null);
+  const [connectionType, setConnectionType] = useState<string | null>('Unknown');
 
   useEffect(() => {
     const updateNetworkStatus = () => {
       try {
-        // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-        const setOfConnection = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection;
+        const connection = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection;
 
         setIsOnline(navigator.onLine);
 
-        if (setOfConnection) {
-          setNetworkSpeed(setOfConnection.downlink || null);
-          setConnectionType(setOfConnection.effectiveType || 'Unknown');
-          setNetworkName(setOfConnection.type || 'N/A'); 
+        if (connection) {
+          setNetworkSpeed(connection.downlink || null);
+          setConnectionType(connection.effectiveType || 'Unknown');
+          setNetworkName(connection.type || 'N/A'); // Ensure fallback to 'N/A'
         }
       } catch (err) {
         console.error('Error retrieving network information:', err);

@@ -34,10 +34,8 @@ describe('useNetwork', () => {
 
     const { result } = renderHook(() => useNetwork());
 
-   
     expect(result.current.isOnline).toBe(true);
 
-    
     act(() => {
       mockNavigatorOnline(false);
       window.dispatchEvent(new Event('offline'));
@@ -58,7 +56,7 @@ describe('useNetwork', () => {
 
     const { result } = renderHook(() => useNetwork());
 
-    expect(result.current.networkName).toBe('N/A');
+    expect(result.current.networkName).toBe('N/A');  
     expect(result.current.networkSpeed).toBeNull();
     expect(result.current.connectionType).toBe('Unknown');
   });
