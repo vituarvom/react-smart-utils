@@ -53,6 +53,7 @@ describe('useDebounce', () => {
     });
 
     it('should clear timeout on unmount', () => {
+        const clearTimeoutSpy = jest.spyOn(global, 'clearTimeout');
         const { unmount } = renderHook(() => useDebounce('test', 500));
 
         // Fast-forward time
@@ -63,7 +64,10 @@ describe('useDebounce', () => {
         // Unmounting the hook
         unmount();
 
-        // The timeout should be cleared, so no state update occurs
-        expect(setTimeout).not.toHaveBeenCalled();
+        // Check if clearTimeout was called when unmounting
+        expect(clearTimeoutSpy).toHaveBeenCalled();
+
+        // Cleanup the spy
+        clearTimeoutSpy.mockRestore();
     });
 });
