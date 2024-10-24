@@ -5,13 +5,26 @@
 * @returns {object} - Return the new object
 */
 
-export const pick = (obj: { [key: string]: any }, keys: string[]): { [key: string]: any } => {
-    const result: { [key: string]: any } = {};
+export const pick = <T extends Record<string, unknown>>(obj: T | null | undefined, keys: string[]): Partial<T> => {
 
-    keys.forEach(key => { 
+    if (obj === null || obj === undefined) {
+        return {};
+    }
+
+    if (!obj || typeof obj !== "object") {
+      throw new Error("The first argument must be a valid object");
+    }
+
+    if (!Array.isArray(keys)) {
+    throw new Error("The second argument must be an array of strings");
+    }
+    
+    const result: Partial<T> = {};
+
+    for(const key of keys) { 
         const keyParts = key.split('.');  
-        let value = obj; 
-        let currentValue = result; 
+        let value:any = obj; 
+        let currentValue:any = result; 
         let keyExists = true; 
 
         for (let i = 0; i < keyParts.length; i++) { 
@@ -34,7 +47,7 @@ export const pick = (obj: { [key: string]: any }, keys: string[]): { [key: strin
                 break;
             }
         }
-    });
+    }
 
     return result;
 };
