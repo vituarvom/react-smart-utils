@@ -1,25 +1,35 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 
 const UseHover: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = React.useState(false);
 
-  const handleMouseEnter = () => setIsHovered(true);
-  const handleMouseLeave = () => setIsHovered(false);
+  const handleMouseEnter = useCallback(() => {
+    setIsHovered(true);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setIsHovered(false);
+  }, []);
 
   useEffect(() => {
-    if (ref.current) {
-      const node = ref.current;
-
-      // Add event listeners
-      node.addEventListener('mouseenter', handleMouseEnter);
-      node.addEventListener('mouseleave', handleMouseLeave);
+    const node = ref.current; // Capture the current node
+    if (node) {
+      try {
+        // Add event listeners
+        node.addEventListener('mouseenter', handleMouseEnter);
+        node.addEventListener('mouseleave', handleMouseLeave);
+      } catch (error) {
+        console.error('Error adding event listeners:', error);
+      }
 
       // Cleanup event listeners on unmount
       return () => {
-        if (node) {
+        try {
           node.removeEventListener('mouseenter', handleMouseEnter);
           node.removeEventListener('mouseleave', handleMouseLeave);
+        } catch (error) {
+          console.error('Error removing event listeners:', error);
         }
       };
     }
