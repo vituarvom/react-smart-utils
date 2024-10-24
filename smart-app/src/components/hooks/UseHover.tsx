@@ -1,4 +1,15 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback, useMemo } from 'react';
+
+const baseStyles = {
+  width: '200px',
+  height: '200px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  border: '2px solid blue',
+  borderRadius: '10px',
+  transition: 'background-color 0.3s',
+};
 
 const UseHover: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -12,18 +23,22 @@ const UseHover: React.FC = () => {
     setIsHovered(false);
   }, []);
 
+  // Use useMemo to create a memoized style object based on the hover state
+  const styles = useMemo(() => ({
+    ...baseStyles,
+    backgroundColor: isHovered ? 'lightblue' : 'lightgray',
+  }), [isHovered]);
+
   useEffect(() => {
-    const node = ref.current; // Capture the current node
+    const node = ref.current;
     if (node) {
       try {
-        // Add event listeners
         node.addEventListener('mouseenter', handleMouseEnter);
         node.addEventListener('mouseleave', handleMouseLeave);
       } catch (error) {
         console.error('Error adding event listeners:', error);
       }
 
-      // Cleanup event listeners on unmount
       return () => {
         try {
           node.removeEventListener('mouseenter', handleMouseEnter);
@@ -33,23 +48,10 @@ const UseHover: React.FC = () => {
         }
       };
     }
-  }, [handleMouseEnter, handleMouseLeave]); // Dependencies
+  }, [handleMouseEnter, handleMouseLeave]);
 
   return (
-    <div
-      ref={ref}
-      style={{
-        width: '200px',
-        height: '200px',
-        backgroundColor: isHovered ? 'lightblue' : 'lightgray',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        border: '2px solid blue',
-        borderRadius: '10px',
-        transition: 'background-color 0.3s',
-      }}
-    >
+    <div ref={ref} style={styles}>
       <h2>{isHovered ? 'Hovered!' : 'Hover over me!'}</h2>
     </div>
   );
