@@ -6,3 +6,4 @@ export { add } from "./add";
 export { uniqueArray } from "./uniqueArray/uniqueArray";
 export { sample } from "./sample/sample";
 export { isNull } from "./isNull/isNull";
+export { isUndefined } from "./isUndefined/isUndefined";
