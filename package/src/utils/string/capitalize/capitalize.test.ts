@@ -24,8 +24,8 @@ describe('capitalize function', () => {
         expect(result).toBe('Maaarrcoosss');
     })
     it("should throw an error for null or undefined inputs", () => {
-        expect(() => capitalize(null as any)).toThrow("Input should be a string");
-        expect(() => capitalize(undefined as any)).toThrow("Input should be a string");
+        expect(() => capitalize(null as unknown as string)).toThrow("Input should be a string");
+        expect(() => capitalize(undefined as unknown as string)).toThrow("Input should be a string");
     });
     it("should return an empty string if no alphabetic characters are present",()=>{
         const result=capitalize("12345!@#$%^&*().*");
