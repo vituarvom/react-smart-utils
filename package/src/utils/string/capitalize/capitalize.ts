@@ -1,4 +1,4 @@
-export function capitalize(str: string | null | undefined): string {
+export function capitalize(str: string): string {
     if (typeof str !== 'string') {
         throw new Error("Input should be a string");
     }
