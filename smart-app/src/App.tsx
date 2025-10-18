@@ -1,5 +1,6 @@
 import "./App.css";
 import { SectionWrapper } from "./components/common/section-wrapper";
+import UseClipboard from "./components/hooks/UseClipboard";
 import UseCountDown from "./components/hooks/UseCountdown";
 import UseLocalStorage from "./components/hooks/UseLocalStorage";
 import { UseNetwork } from "./components/hooks/UseNetwork";
@@ -26,6 +27,10 @@ function App() {
           title: "UseNetwork",
           node: <UseNetwork />,
         },
+        {
+          title: "UseClipboard",
+          node: <UseClipboard />,
+        }
         
       ],
     },
