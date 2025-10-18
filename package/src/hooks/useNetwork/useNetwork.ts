@@ -1,59 +1,64 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+
 
 /**
- * Custom hook to track and return the current network status.
- * 
- * @returns {{ 
- *   isOnline: boolean; 
- *   networkName: string | null; 
- *   networkSpeed: number | null; 
- *   connectionType: string | null; 
- * }} The current network status including online status, network name, speed, and connection type.
+ * The `useNetwork` custom hook in TypeScript tracks and provides information about the user's network
+ * status and connection details.
+ * @returns The `useNetwork` custom hook returns an object with the following properties:
+ * - `isOnline`: a boolean indicating whether the user is currently online.
+ * - `networkName`: a string representing the network type (e.g., "wifi", "cellular", etc.) or "N/A" if
+ * not available.
+ * - `networkSpeed`: a number representing the network speed in Mbps or null if not
  */
 export const useNetwork = () => {
-  const [isOnline, setIsOnline] = useState(navigator.onLine);
-  const [networkName, setNetworkName] = useState<string | null>('N/A'); // Default to 'N/A'
+  const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
+  const [networkName, setNetworkName] = useState<string | null>(null);
   const [networkSpeed, setNetworkSpeed] = useState<number | null>(null);
-  const [connectionType, setConnectionType] = useState<string | null>('Unknown');
+  const [connectionType, setConnectionType] = useState<string | null>(null);
+
+  const updateNetworkStatus = useCallback(() => {
+    const connection =
+      (navigator as any).connection ||
+      (navigator as any).mozConnection ||
+      (navigator as any).webkitConnection;
+
+    setIsOnline(navigator.onLine);
+
+    if (connection) {
+      setNetworkSpeed(connection.downlink ?? null);
+      setConnectionType(connection.effectiveType ?? 'Unknown');
+      setNetworkName(connection.type ?? 'N/A');
+    } else {
+      setNetworkSpeed(null);
+      setConnectionType('Unknown');
+      setNetworkName('N/A');
+    }
+  }, []);
 
   useEffect(() => {
-    const updateNetworkStatus = () => {
-      try {
-        const connection = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection;
-
-        setIsOnline(navigator.onLine);
-
-        if (connection) {
-          setNetworkSpeed(connection.downlink || null);
-          setConnectionType(connection.effectiveType || 'Unknown');
-          setNetworkName(connection.type || 'N/A'); // Ensure fallback to 'N/A'
-        }
-      } catch (err) {
-        console.error('Error retrieving network information:', err);
-        setNetworkName('N/A');
-        setNetworkSpeed(null);
-        setConnectionType('Unknown');
-      }
-    };
+    // Initial check
+    updateNetworkStatus();
 
     window.addEventListener('online', updateNetworkStatus);
     window.addEventListener('offline', updateNetworkStatus);
 
-    if ((navigator as any).connection) {
-      (navigator as any).connection.addEventListener('change', updateNetworkStatus);
-    }
+    const connection =
+      (navigator as any).connection ||
+      (navigator as any).mozConnection ||
+      (navigator as any).webkitConnection;
 
-    updateNetworkStatus();
+    if (connection) {
+      connection.addEventListener('change', updateNetworkStatus);
+    }
 
     return () => {
       window.removeEventListener('online', updateNetworkStatus);
       window.removeEventListener('offline', updateNetworkStatus);
-
-      if ((navigator as any).connection) {
-        (navigator as any).connection.removeEventListener('change', updateNetworkStatus);
+      if (connection) {
+        connection.removeEventListener('change', updateNetworkStatus);
       }
     };
-  }, []);
+  }, [updateNetworkStatus]);
 
   return { isOnline, networkName, networkSpeed, connectionType };
 };
