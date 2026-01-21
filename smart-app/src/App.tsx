@@ -5,6 +5,7 @@ import UseCountDown from "./components/hooks/UseCountdown";
 import UseLocalStorage from "./components/hooks/UseLocalStorage";
 import { UseNetwork } from "./components/hooks/UseNetwork";
 import UsePrevious from "./components/hooks/UsePrevious";
+import KebabCase from "./components/utils/KebabCase";
 
 function App() {
   const rsu = [
@@ -40,6 +41,10 @@ function App() {
         {
           title: "sleep",
           node: <UseCountDown />,
+        },
+        {
+          title: "KebabCase",
+          node: <KebabCase/>,
         },
       ],
     },
