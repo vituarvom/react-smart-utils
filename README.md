@@ -25,7 +25,8 @@ Discord: https://discord.gg/DTJV27BYwA
 
 # React Smart Utils Library
 
-A comprehensive set of utility functions and components designed to streamline development with React and TypeScript. This library helps improve your workflow with reusable components and functions, customizable and extensible to meet the needs of various React projects.
+A lightweight collection of production-ready React hooks and utility functions.
+Zero dependencies. SSR-safe. StrictMode-friendly.
 
 ---
 
@@ -69,6 +70,42 @@ yarn add react-smart-utils
 - **Tree-shakable**: Only include what you need, minimizing bundle size.
 
 ---
+
+## 🪝 Hooks – Description & Usage
+| Hook               | Description                              | React Native Support | Mobile Alternative / Notes            |
+| ------------------ | ---------------------------------------- | -------------------- | ------------------------------------- |
+| `useToggle`        | Manage boolean state with helper actions | ✅ Yes                | Works out of the box                  |
+| `usePrevious`      | Get previous value of state or prop      | ✅ Yes                | Works out of the box                  |
+| `useLocalStorage`  | Persist state in `localStorage`          | ❌ No                 | Use AsyncStorage                      |
+| `useCountdown`     | Countdown timer with controls            | ✅ Yes                | Works out of the box                  |
+| `useDebounceValue` | Debounce changing values                 | ✅ Yes                | Works out of the box                  |
+| `useUpdateEffect`  | Effect that skips initial render         | ✅ Yes                | Works out of the box                  |
+| `useRunOnlyOnce`   | Run logic exactly once (StrictMode safe) | ✅ Yes                | Works out of the box                  |
+| `useUnmount`       | Run cleanup logic on unmount             | ✅ Yes                | Works out of the box                  |
+| `useIsMounted`     | Prevent state updates after unmount      | ✅ Yes                | Works out of the box                  |
+| `useClipboard`     | Copy text to clipboard                   | ⚠️ Partial           | Use `expo-clipboard` / RN Clipboard   |
+| `useNetwork`       | Track online/offline state               | ⚠️ Partial           | Use `@react-native-community/netinfo` |
+| `useWindowSize`    | Track window dimensions                  | ❌ No                 | Use `useWindowDimensions`             |
+
+
+## 🧰 Utils (Web & Native)
+
+| Utility       | Description                      | React Native Support | Notes             |
+| ------------- | -------------------------------- | -------------------- | ----------------- |
+| `clamp`       | Clamp a number between min & max | ✅ Yes                | Pure function     |
+| `hasKey`      | Type-safe object key check       | ✅ Yes                | TS-friendly       |
+| `isNull`      | Check if value is `null`         | ✅ Yes                | Pure function     |
+| `isUndefined` | Check if value is `undefined`    | ✅ Yes                | Pure function     |
+| `sample`      | Get random item from array       | ✅ Yes                | Pure function     |
+| `sleep`       | Async delay helper               | ✅ Yes                | Works everywhere  |
+| `throttle`    | Throttle function execution      | ✅ Yes                | Platform-agnostic |
+| `toLower`     | Convert string to lowercase      | ✅ Yes                | Safe wrapper      |
+| `toUpperCase` | Convert string to uppercase      | ✅ Yes                | Safe wrapper      |
+| `uniqueArray` | Remove duplicate array values    | ✅ Yes                | Uses `Set`        |
+
+
+
+
 
 
 
