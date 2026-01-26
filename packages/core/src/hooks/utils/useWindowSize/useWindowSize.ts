@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { throttle } from "../../utils";
+import { throttle } from "../../../utils";
 
 interface WindowSize {
   width: number;

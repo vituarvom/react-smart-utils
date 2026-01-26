@@ -15,7 +15,7 @@
     "nextui-cli": "^0.3.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-smart-utils": "file:../package"
+    "react-smart-utils": "^0.0.37"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",

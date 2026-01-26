@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
-import { formatTime } from "../../services/common-services";
 import type { CountdownControls, UseCountdownOptions } from "hooks";
+import { formatTime } from "../../../services/common-services";
 
 export const useCountdown = (
   initialTimeInSeconds: number,
